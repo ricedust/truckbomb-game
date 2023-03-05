@@ -5,10 +5,12 @@ public class ObstacleManager : StaticInstance<ObstacleManager>
 {
     [Header("References")]
     [SerializeField] private Car carPrefab;
-
-    [Header("Properties")]
-    [SerializeField] private float spawnIntervalSeconds = 1.0f;
-    [SerializeField] private float spawnYPosition = 4.0f;
+    [Header("Spawn Parameters")]
+    [SerializeField] private float spawnIntervalInSeconds;
+    [SerializeField] private float spawnYPosition;
+    [Header("Pool Parameters")]
+    [SerializeField] private int defaultPoolCapacity;
+    [SerializeField] private int maxPoolCapacity;
 
     private ObjectPool<Car> carPool;
 
@@ -21,37 +23,47 @@ public class ObstacleManager : StaticInstance<ObstacleManager>
             return car;
         }, car =>
         { // action on get
-            Debug.Log("Car activated");
+            // Debug.Log("Car activated");
             car.gameObject.SetActive(true);
         }, car =>
         { // action on release
-            Debug.Log("Car deactivated");
+            // Debug.Log("Car deactivated");
             car.gameObject.SetActive(false);
         }, car =>
         { // action on destroy
-            Debug.Log("Car destroyed");
+            // Debug.Log("Car destroyed");
             Destroy(car.gameObject);
-        }, false, 20, 40);
+        }, false, defaultPoolCapacity, maxPoolCapacity);
     }
 
-    public void StartSpawning()
+    /// <summary>
+    /// Despawn action for car objects so that cars can despawn themselves
+    /// </summary>
+    private void DespawnCar(Car car) => carPool.Release(car);
+
+
+    public void SpawnCarsInInterval()
     {
-        InvokeRepeating("SpawnCar", 0.0f, spawnIntervalSeconds);
+        InvokeRepeating("SpawnCar", 0.0f, spawnIntervalInSeconds);
     }
 
     private void SpawnCar()
     {
-        int laneIndex = Random.Range(0, EnvironmentManager.instance.GetNumLanes());
-        float lanePos = EnvironmentManager.instance.GetLaneX(laneIndex);
-
         Car car = carPool.Get();
-        // reset transform
-        car.transform.position = new Vector2(lanePos, spawnYPosition);
-        car.transform.eulerAngles = Vector2.zero;
+
+        car.Reset();
+        car.transform.position = GenerateSpawnPosition();
+        car.ApplyForce(Vector2.down);
     }
 
-    private void DespawnCar(Car car)
+    /// <summary>
+    /// Returns a Vector2 spawn position at the top of a random lane
+    /// </summary>
+    private Vector2 GenerateSpawnPosition()
     {
-        carPool.Release(car);
+        int laneIndex = Random.Range(0, EnvironmentManager.instance.GetNumLanes());
+        float laneXPos = EnvironmentManager.instance.GetLaneX(laneIndex);
+
+        return new Vector2(laneXPos, spawnYPosition);
     }
 }
