@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Bolt : MonoBehaviour
+public class Bolt : MonoBehaviour, IPoolable
 {
-    private Action<Bolt> DespawnAction;
+    private Action<GameObject> OnDespawn;
 
     public static event Action OnBoltCollected;
 
@@ -14,9 +13,9 @@ public class Bolt : MonoBehaviour
         transform.Translate(Vector2.down * GameManager.instance.gameSpeed * Time.deltaTime);
     }
 
-    public void Initialize(Action<Bolt> DespawnAction)
+    public void InitializeDespawnAction(Action<GameObject> DespawnAction)
     {
-        this.DespawnAction = DespawnAction;
+        OnDespawn = DespawnAction;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,12 +23,18 @@ public class Bolt : MonoBehaviour
         // Debug.Log("Bolt entered trigger");
         if (collision.TryGetComponent(out DespawnTrigger despawnTrigger)) // despawn trigger
         {
-            DespawnAction(this);
+            OnDespawn(gameObject);
         }
         if (collision.TryGetComponent(out Player player)) // player
         {
             OnBoltCollected?.Invoke(); // fire bolt collected event
-            DespawnAction(this);
+            OnDespawn(gameObject);
         }
+    }
+
+    public void ResetState()
+    {
+        // does nothing for now since the bolt state doesn't change
+        return;
     }
 }

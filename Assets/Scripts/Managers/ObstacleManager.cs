@@ -1,57 +1,34 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class ObstacleManager : StaticInstance<ObstacleManager>
 {
     [Header("References")]
-    [SerializeField] private Car carPrefab;
+    [SerializeField] private ObjectPooler carPool;
     [Header("Spawn Parameters")]
-    [SerializeField] private float spawnIntervalInSeconds;
+    [SerializeField] private float spawnIntervalDistanceFeet;
     [SerializeField] private float spawnYPosition;
-    [Header("Pool Parameters")]
-    [SerializeField] private int defaultPoolCapacity;
-    [SerializeField] private int maxPoolCapacity;
 
-    private ObjectPool<Car> carPool;
+    private float nextSpawnPointFeet;
 
-    private void Start()
+    private void Update()
     {
-        carPool = new ObjectPool<Car>(() =>
-        { // create function
-            Car car = Instantiate(carPrefab, transform);
-            car.Initialize(DespawnCar);
-            return car;
-        }, car =>
-        { // action on get
-            // Debug.Log("Car activated");
-            car.gameObject.SetActive(true);
-        }, car =>
-        { // action on release
-            // Debug.Log("Car deactivated");
-            car.gameObject.SetActive(false);
-        }, car =>
-        { // action on destroy
-            // Debug.Log("Car destroyed");
-            Destroy(car.gameObject);
-        }, false, defaultPoolCapacity, maxPoolCapacity);
+        SpawnCarsInDistanceInterval();
     }
 
-    /// <summary>
-    /// Despawn action for car objects so that cars can despawn themselves
-    /// </summary>
-    private void DespawnCar(Car car) => carPool.Release(car);
-
-
-    public void SpawnCarsInInterval()
+    private void SpawnCarsInDistanceInterval()
     {
-        InvokeRepeating("SpawnCar", 0.0f, spawnIntervalInSeconds);
+        if (GameManager.instance.distanceTraveledFeet > nextSpawnPointFeet)
+        {
+            SpawnCar();
+            nextSpawnPointFeet += spawnIntervalDistanceFeet;
+        }
     }
 
     private void SpawnCar()
     {
-        Car car = carPool.Get();
+        Car car = carPool.Get().GetComponent<Car>();
 
-        car.Reset();
+        car.ResetState();
         car.transform.position = GenerateSpawnPosition();
         car.ApplyForce(Vector2.down);
     }

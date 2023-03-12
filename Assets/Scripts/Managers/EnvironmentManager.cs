@@ -11,11 +11,10 @@ public class EnvironmentManager : StaticInstance<EnvironmentManager>
     [Header("Properties")]
     [SerializeField] private float[] laneXPositions = new float[5];
 
-    private Vector3 initialPosition; // made this a Vector3 to preserve the depth of the background
-    private float finalYPosition;
+    private Vector2 initialPosition;
 
     /// <summary>
-    /// Returns the x position of the lane at a certain index
+    /// Returns the x position of the lane at the index
     /// </summary>
     public float GetLaneX(int index) { return laneXPositions[index]; }
 
@@ -24,7 +23,6 @@ public class EnvironmentManager : StaticInstance<EnvironmentManager>
     void Start()
     {
         initialPosition = background.position;
-        finalYPosition = -initialPosition.y;
     }
 
     void Update()
@@ -32,7 +30,7 @@ public class EnvironmentManager : StaticInstance<EnvironmentManager>
         float speed = GameManager.instance.gameSpeed;
         background.Translate(Vector2.down * speed * Time.deltaTime);
 
-        if (background.position.y < finalYPosition)
+        if (background.position.y < -initialPosition.y)
         {
             // Debug.Log("background reset");
             background.position = initialPosition;

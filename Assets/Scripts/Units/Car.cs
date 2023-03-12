@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Car : MonoBehaviour
+public class Car : MonoBehaviour, IPoolable
 {
     [Header("References")]
     [SerializeField] private Rigidbody2D rigidbody2d;
@@ -15,8 +15,12 @@ public class Car : MonoBehaviour
     [Header("Panic Steering")]
     [SerializeField] private float panicSteeringTorqueMultiplier;
     [SerializeField] private float panicSteeringForce;
+    [Header("Explosion")]
+    [SerializeField] private float explosionRadius;
+    [SerializeField] private float explosionForce;
 
-    private Action<Car> DespawnAction;
+    private Action<GameObject> OnDespawn;
+
     private bool hasCrashed;
 
     public void FixedUpdate()
@@ -29,12 +33,9 @@ public class Car : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Attach despawn action to car object to release itself from the pool later
-    /// </summary>
-    public void Initialize(Action<Car> DespawnAction)
+    public void InitializeDespawnAction(Action<GameObject> DespawnAction)
     {
-        this.DespawnAction = DespawnAction;
+        OnDespawn = DespawnAction;
     }
 
     public void ApplyForce(Vector2 forceVector)
@@ -69,14 +70,28 @@ public class Car : MonoBehaviour
     }
     private void ApplyPanicSteering()
     {
-        // nosie value between -1 and 1
-        float noise = Mathf.PerlinNoise(Time.time * Random.value, 0) * (Random.value * 2 - 1);
+        // noise value between -1 and 1
+        float noise = Mathf.PerlinNoise(Time.time, 0) * (Random.value * 2 - 1);
 
         rigidbody2d.AddTorque(noise * panicSteeringTorqueMultiplier * Time.deltaTime);
         rigidbody2d.AddRelativeForce(Vector2.up * panicSteeringForce * Time.deltaTime);
     }
 
-    public void Reset()
+    private void Explode()
+    {
+        foreach (Collider2D collision in Physics2D.OverlapCircleAll(transform.position, explosionRadius))
+        {
+            if (collision.TryGetComponent(out Car car) && car != this)
+            {
+                Vector2 explosionAngle = (car.transform.position - transform.position);
+
+                float explosionForceOverDistance = explosionForce / Vector2.Distance(car.transform.position, transform.position);
+                car.ApplyForce(explosionAngle * explosionForceOverDistance);
+            }
+        }
+    }
+
+    public void ResetState()
     {
         hasCrashed = false;
 
@@ -91,16 +106,17 @@ public class Car : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // This is the logic for despawning cars after two collisions
-        // Commented out temporarily because it's funny to watch cars bounce around
-        // if (hasCrashed) DespawnAction(this);
-        // else Crash();
-
-        if (!hasCrashed) Crash();
+        if (hasCrashed)
+        {
+            Explode();
+            OnDespawn(gameObject);
+        }
+        else Crash();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // despawn trigger
-        if (collision.TryGetComponent(out DespawnTrigger despawnTrigger)) DespawnAction(this);
+        if (collision.TryGetComponent(out DespawnTrigger despawnTrigger)) OnDespawn(gameObject);
     }
 }

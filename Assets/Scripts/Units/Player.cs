@@ -3,26 +3,21 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private CurveLerper curveLerper;
+
     [Header("Properties")]
     [SerializeField] [Range(0, 4)] private int targetLane;
-    [SerializeField] private AnimationCurve laneChangeAnimationCurve;
-    [SerializeField] private float laneChangeSpeed;
-    [SerializeField] private float collisionPower;
+    [SerializeField] AnimationCurve laneChangeAnimationCurve;
+    [SerializeField] private float timeToChangeLanesSeconds;
+    [SerializeField] private float carCollisionForce;
 
-    public static event Action OnCollision;
+    public static event Action OnCarCollision;
 
-    private float startX, targetX;
-    private float animationTimer; // the x-axis of the animation curve
-
-    private void Start()
-    {
-        animationTimer = 1; // animation is complete at beginning of game
-    }
-
-    private void Update()
+   private void Update()
     {
         HandleInput();
-        if (animationTimer < 1) LerpToLane();
+        UpdatePosition();
     }
 
     private void HandleInput()
@@ -38,28 +33,21 @@ public class Player : MonoBehaviour
     }
     private void ChangeLane(int lanesToMove)
     {
-        // take a snapshot of the current pos
-        startX = transform.position.x;
+        float startXPosition = transform.position.x;
 
-        // set target lane and make sure it is valid
         targetLane += lanesToMove;
+        // make sure target lane is valid
         targetLane = Mathf.Clamp(targetLane, 0, EnvironmentManager.instance.GetNumLanes() - 1);
 
-        // reset animation timer
-        animationTimer = 0.0f;
+        float targetXPosition = EnvironmentManager.instance.GetLaneX(targetLane);
+
+        // start lane change animation
+        curveLerper.LerpOnCurve(laneChangeAnimationCurve, startXPosition, targetXPosition, timeToChangeLanesSeconds);
     }
 
-    private void LerpToLane()
+    private void UpdatePosition()
     {
-        // set the targetX
-        targetX = EnvironmentManager.instance.GetLaneX(targetLane);
-
-        // lerp based on curve
-        float currentX = Mathf.LerpUnclamped(startX, targetX, laneChangeAnimationCurve.Evaluate(animationTimer));
-        transform.position = new Vector2(currentX, transform.position.y);
-
-        // increment the animation timer
-        animationTimer += laneChangeSpeed * Time.deltaTime;
+        transform.position = new Vector2(curveLerper.currentValue, transform.position.y);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -67,7 +55,7 @@ public class Player : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Car car))
         {
             PushAway(car);
-            OnCollision?.Invoke();
+            OnCarCollision?.Invoke();
         }
     }
 
@@ -76,6 +64,6 @@ public class Player : MonoBehaviour
         Vector2 angleOfCollision = (car.transform.position - transform.position);
         angleOfCollision.Normalize();
 
-        car.ApplyForce(angleOfCollision * collisionPower);
+        car.ApplyForce(angleOfCollision * carCollisionForce);
     }
 }

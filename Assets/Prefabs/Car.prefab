@@ -152,7 +152,9 @@ MonoBehaviour:
   rigidbody2d: {fileID: 1744267141076527266}
   speedRelativeToGameSpeed: 5
   brakingForce: 1000
-  brakingDrag: 0.5
-  brakingAngularDrag: 0.5
-  panicSteeringTorqueMultiplier: 200
-  panicSteeringForce: 500
+  brakingDrag: 1
+  brakingAngularDrag: 1
+  panicSteeringTorqueMultiplier: 300
+  panicSteeringForce: 600
+  explosionRadius: 10
+  explosionForce: 5

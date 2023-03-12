@@ -16,8 +16,8 @@ public class MinigameManager : MonoBehaviour
     // List of Prefabs
     public Minigame wheelPrefab;
 
-    private void OnEnable() => Player.OnCollision += InstantiateMinigame;
-    private void OnDisable() => Player.OnCollision -= InstantiateMinigame;
+    private void OnEnable() => Player.OnCarCollision += InstantiateMinigame;
+    private void OnDisable() => Player.OnCarCollision -= InstantiateMinigame;
 
     public void InstantiateMinigame()
     {
