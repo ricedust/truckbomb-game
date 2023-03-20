@@ -1721,7 +1721,7 @@ MonoBehaviour:
   - {fileID: 1604344749}
   - {fileID: 1604344750}
   bombMinigamePool: {fileID: 1604344747}
-  bombMinigameChance: 0
+  bombMinigameChance: 0.1
 --- !u!114 &1604344747
 MonoBehaviour:
   m_ObjectHideFlags: 0
