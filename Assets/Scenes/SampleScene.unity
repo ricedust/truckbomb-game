@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -800, y: 400}
+  m_AnchoredPosition: {x: -839.03125, y: -426.8125}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &88501756
@@ -190,8 +190,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -293,7 +293,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: 350}
+  m_AnchoredPosition: {x: -439.03125, y: -476.8125}
   m_SizeDelta: {x: 1000, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &223873552
@@ -327,8 +327,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -714,6 +715,22 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +768,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 1560802600000000
+  m_ApplyToSortingLayers: 156080260000000045c0e957
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -992,7 +1009,10 @@ GameObject:
   - component: {fileID: 1029579759}
   - component: {fileID: 1029579756}
   - component: {fileID: 1029579757}
+  - component: {fileID: 1029579763}
+  - component: {fileID: 1029579761}
   - component: {fileID: 1029579760}
+  - component: {fileID: 1029579762}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1056,43 +1076,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10dab06895643024f9c8c66958a5a696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curveLerper: {fileID: 1029579760}
-  targetLane: 2
-  laneChangeAnimationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.6854854
-      outSlope: 0.6854854
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.17505188
-    - serializedVersion: 3
-      time: 0.43489346
-      value: 1.1437694
-      inSlope: 1.0333443
-      outSlope: 1.0333443
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33216348
-      outWeight: 0.36585155
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 1.0504688
-      outSlope: 1.0504688
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.19378838
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  timeToChangeLanesSeconds: 0.4
-  carCollisionForce: 3
 --- !u!212 &1029579758
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1178,6 +1161,109 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 639179b2c1bb3594295a9e05c0f01c4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.6854854
+      outSlope: 0.6854854
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.17505188
+    - serializedVersion: 3
+      time: 0.43489346
+      value: 1.1437694
+      inSlope: 1.0333443
+      outSlope: 1.0333443
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33216348
+      outWeight: 0.36585155
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1.0504688
+      outSlope: 1.0504688
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.19378838
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1029579761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029579753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6114e479f989d9489c05dd83bf1bce3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laneChangeLerper: {fileID: 1029579760}
+  targetLane: 2
+  timeToChangeLaneSeconds: 0.3
+--- !u!114 &1029579762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029579753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208957388bedacd47bd96a885af0adb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carCollisionForce: 5
+--- !u!114 &1029579763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029579753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436d6ee4370974a4c9a7725762215815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onMoveLeft:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1029579761}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: MergeLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMoveRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1029579761}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: MergeRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1234404945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1224,7 +1310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carPool: {fileID: 1234404948}
-  spawnIntervalDistanceFeet: 30
+  spawnIntervalDistanceFeet: 60
   spawnYPosition: 4
 --- !u!114 &1234404948
 MonoBehaviour:
@@ -1239,8 +1325,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 1160876151705223363, guid: 9241662662ed4154fb952f5bf7d059c1, type: 3}
-  defaultPoolCapacity: 32
-  maxPoolCapacity: 64
+  defaultCapacity: 32
+  maxCapacity: 64
 --- !u!1 &1249564970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,7 +1337,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1249564971}
   - component: {fileID: 1249564972}
+  - component: {fileID: 1249564974}
   - component: {fileID: 1249564973}
+  - component: {fileID: 1249564975}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -1286,9 +1374,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1baa42b522c7646809d6842e6cf2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curveLerper: {fileID: 1249564973}
-  distanceTraveledText: {fileID: 223873552}
-  gameSpeedRampingCurve:
+  gameSpeedController: {fileID: 1249564974}
+  distanceTracker: {fileID: 1249564975}
+--- !u!114 &1249564973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249564970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639179b2c1bb3594295a9e05c0f01c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
@@ -1312,10 +1412,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  initialSpeed: 6
-  finalSpeed: 15
-  timeToFinalSpeedSeconds: 60
---- !u!114 &1249564973
+--- !u!114 &1249564974
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1324,9 +1421,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 1249564970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639179b2c1bb3594295a9e05c0f01c4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a0d38de8dec9a84a8d25dd11e17d4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSpeedCurve: {fileID: 1249564973}
+  initialSpeed: 6
+  finalSpeed: 15
+  timeToFinalSpeedSeconds: 1000
+  timeToStopOnGameOverSeconds: 5
+--- !u!114 &1249564975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249564970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0f1010f0fa8cc4fb7764f07973ab2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceTraveledText: {fileID: 223873552}
 --- !u!1 &1299821845
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boltPool: {fileID: 1367043629}
   boltsCollectedText: {fileID: 88501756}
-  spawnIntervalInSeconds: 0.25
+  spawnIntervalInSeconds: 0.1
   spawnYPosition: 4
 --- !u!114 &1367043629
 MonoBehaviour:
@@ -1480,39 +1595,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 8203321889130565454, guid: 3080a75f71b2f7246abee5d8ad88ebb3, type: 3}
-  defaultPoolCapacity: 32
-  maxPoolCapacity: 64
---- !u!1 &1378417930
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1378417931}
-  m_Layer: 0
-  m_Name: Minigame Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1378417931
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378417930}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1386451921}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  defaultCapacity: 32
+  maxCapacity: 64
 --- !u!1 &1386451920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,7 +1626,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 780069856}
-  - {fileID: 1378417931}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1590,13 +1673,17 @@ GameObject:
   m_Component:
   - component: {fileID: 1604344745}
   - component: {fileID: 1604344746}
+  - component: {fileID: 1604344748}
+  - component: {fileID: 1604344749}
+  - component: {fileID: 1604344750}
+  - component: {fileID: 1604344747}
   m_Layer: 0
   m_Name: Minigame Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1604344745
 Transform:
   m_ObjectHideFlags: 0
@@ -1624,8 +1711,77 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37710c39f2e95694cb5c39e5770fdf80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameCanvas: {fileID: 1378417931}
-  wheelPrefab: {fileID: 5275826939346044238, guid: 5c568fd0f657260459945c2be0876936, type: 3}
+  minigamePositions:
+  - {x: 3.4375, y: 1.25}
+  - {x: -3.4375, y: 1.25}
+  - {x: 3.4375, y: -1.25}
+  - {x: -3.4375, y: -1.25}
+  minigamePools:
+  - {fileID: 1604344748}
+  - {fileID: 1604344749}
+  - {fileID: 1604344750}
+  bombMinigamePool: {fileID: 1604344747}
+  bombMinigameChance: 0
+--- !u!114 &1604344747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604344744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a8733c3c77cbe46ba15dc3d864cfbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4460098328286056264, guid: e794e4767ea24fa498044a4c11d2f132, type: 3}
+  defaultCapacity: 1
+  maxCapacity: 1
+--- !u!114 &1604344748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604344744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a8733c3c77cbe46ba15dc3d864cfbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 1481548846019244302, guid: 62a567baeee6777428eee0959bfecd62, type: 3}
+  defaultCapacity: 4
+  maxCapacity: 4
+--- !u!114 &1604344749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604344744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a8733c3c77cbe46ba15dc3d864cfbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4568452777628425293, guid: f6df343e6f84d25439171e06d2f56ab2, type: 3}
+  defaultCapacity: 4
+  maxCapacity: 4
+--- !u!114 &1604344750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604344744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a8733c3c77cbe46ba15dc3d864cfbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4460098328286056264, guid: 62732ef6774284b42bc2c39832cf726e, type: 3}
+  defaultCapacity: 4
+  maxCapacity: 4
 --- !u!1 &1888382104
 GameObject:
   m_ObjectHideFlags: 0

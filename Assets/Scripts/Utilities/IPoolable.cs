@@ -5,6 +5,6 @@ using UnityEngine;
 
 public interface IPoolable
 {
-    void InitializeDespawnAction(Action<GameObject> DespawnAction);
+    void InitializeDespawnAction(Action<GameObject> Despawn);
     void ResetState();
 }

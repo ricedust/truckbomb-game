@@ -4,8 +4,8 @@ using UnityEngine.Pool;
 public class ObjectPooler : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
-    [SerializeField] private int defaultPoolCapacity;
-    [SerializeField] private int maxPoolCapacity;
+    [SerializeField] private int defaultCapacity;
+    [SerializeField] private int maxCapacity;
 
     private ObjectPool<GameObject> objectPool;
 
@@ -25,7 +25,7 @@ public class ObjectPooler : MonoBehaviour
         }, gameObject =>
         { // action on destroy
             Destroy(gameObject);
-        }, false, defaultPoolCapacity, maxPoolCapacity);
+        }, false, defaultCapacity, maxCapacity);
     }
     
     private void DespawnAction(GameObject gameObject) => objectPool.Release(gameObject);

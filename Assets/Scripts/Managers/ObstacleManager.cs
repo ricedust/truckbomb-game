@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ObstacleManager : StaticInstance<ObstacleManager>
@@ -8,19 +9,24 @@ public class ObstacleManager : StaticInstance<ObstacleManager>
     [SerializeField] private float spawnIntervalDistanceFeet;
     [SerializeField] private float spawnYPosition;
 
-    private float nextSpawnPointFeet;
+    private float nextSpawnPointFeet = 0;
 
-    private void Update()
+    public void StartSpawningCars()
     {
-        SpawnCarsInDistanceInterval();
+        nextSpawnPointFeet = spawnIntervalDistanceFeet;
+        StartCoroutine(SpawnCarsOverDistance());
     }
 
-    private void SpawnCarsInDistanceInterval()
+    private IEnumerator SpawnCarsOverDistance()
     {
-        if (GameManager.instance.distanceTraveledFeet > nextSpawnPointFeet)
+        while(GameManager.instance.state == GameState.inGame)
         {
-            SpawnCar();
-            nextSpawnPointFeet += spawnIntervalDistanceFeet;
+            if (GameManager.instance.distanceTraveledFeet > nextSpawnPointFeet)
+            {
+                SpawnCar();
+                nextSpawnPointFeet += spawnIntervalDistanceFeet;
+            }
+            yield return null;
         }
     }
 

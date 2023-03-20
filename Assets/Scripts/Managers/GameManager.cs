@@ -1,20 +1,11 @@
 using System;
-using System.Collections;
 using UnityEngine;
-using TMPro;
 
 public class GameManager : StaticInstance<GameManager>
 {
-    [Header("References")]
-    [SerializeField] private CurveLerper curveLerper;
-    [SerializeField] private TextMeshProUGUI distanceTraveledText;
+    [SerializeField] private GameSpeedController gameSpeedController;
+    [SerializeField] private DistanceTracker distanceTracker;
 
-    [Header("Game Speed")]
-    [SerializeField] private AnimationCurve gameSpeedRampingCurve;
-    [SerializeField] private float initialSpeed;
-    [SerializeField] private float finalSpeed;
-    [SerializeField] private float timeToFinalSpeedSeconds;
-    
     // events to broadcast state changes
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
@@ -58,8 +49,8 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandleStarting()
     {
-        curveLerper.LerpOnCurve(gameSpeedRampingCurve, initialSpeed, finalSpeed, timeToFinalSpeedSeconds);
-        StartCoroutine(UpdateGameStats());
+        gameSpeedController.Initialize(SetGameSpeed);
+        distanceTracker.Initialize(SetDisanceTraveled);
 
         // call ChangeState again to enter gameplay
         ChangeState(GameState.inGame);
@@ -67,26 +58,17 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandleInGame()
     {
-        BoltManager.instance.SpawnBoltsInInterval();
+        BoltManager.instance.StartSpawningBolts();
+        ObstacleManager.instance.StartSpawningCars();
     }
 
     private void HandleLosing()
     {
 
     }
-    
-    private IEnumerator UpdateGameStats()
-    {
-        while (curveLerper.enabled)
-        {
-            gameSpeed = curveLerper.currentValue;
-            distanceTraveledFeet += Time.deltaTime * gameSpeed * 14.7f;
 
-            distanceTraveledText.text = "FEET TRAVELED: " + distanceTraveledFeet + "\nMILES TRAVELED: " + distanceTraveledFeet * 0.0001894f;
-
-            yield return null;
-        }
-    }
+    private void SetGameSpeed(float gameSpeed) => this.gameSpeed = gameSpeed;
+    private void SetDisanceTraveled(float distanceTraveledFeet) => this.distanceTraveledFeet = distanceTraveledFeet;
 }
 
 [Serializable]

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Bolt : MonoBehaviour, IPoolable
 {
-    private Action<GameObject> OnDespawn;
+    private Action<GameObject> Despawn;
 
     public static event Action OnBoltCollected;
 
@@ -13,22 +13,19 @@ public class Bolt : MonoBehaviour, IPoolable
         transform.Translate(Vector2.down * GameManager.instance.gameSpeed * Time.deltaTime);
     }
 
-    public void InitializeDespawnAction(Action<GameObject> DespawnAction)
-    {
-        OnDespawn = DespawnAction;
-    }
+    public void InitializeDespawnAction(Action<GameObject> Despawn) => this.Despawn = Despawn;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Debug.Log("Bolt entered trigger");
         if (collision.TryGetComponent(out DespawnTrigger despawnTrigger)) // despawn trigger
         {
-            OnDespawn(gameObject);
+            Despawn(gameObject);
         }
         if (collision.TryGetComponent(out Player player)) // player
         {
             OnBoltCollected?.Invoke(); // fire bolt collected event
-            OnDespawn(gameObject);
+            Despawn(gameObject);
         }
     }
 

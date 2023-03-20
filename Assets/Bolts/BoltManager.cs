@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class BoltManager : StaticInstance<BoltManager>
 {
@@ -16,16 +17,19 @@ public class BoltManager : StaticInstance<BoltManager>
     private void OnEnable() => Bolt.OnBoltCollected += UpdateBoltsCollected;
     private void OnDisable() => Bolt.OnBoltCollected -= UpdateBoltsCollected;
 
-    public void SpawnBoltsInInterval()
+    public void StartSpawningBolts()
     {
-        // for some godforsaken reason, invoke repeating will fire twice at the beginning unless set to 0.1f
-        InvokeRepeating("SpawnBolt", 0.1f, spawnIntervalInSeconds);
+        StartCoroutine(SpawnBoltsOverTime());
     }
 
-    private void SpawnBolt()
+    private IEnumerator SpawnBoltsOverTime()
     {
-        GameObject bolt = boltPool.Get();
-        bolt.transform.position = GenerateSpawnPosition();
+        while (GameManager.instance.state == GameState.inGame)
+        {
+            yield return new WaitForSeconds(spawnIntervalInSeconds);
+            GameObject bolt = boltPool.Get();
+            bolt.transform.position = GenerateSpawnPosition();
+        }
     }
 
     /// <summary>

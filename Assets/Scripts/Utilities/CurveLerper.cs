@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// CurveLerper tracks the value of a curve over a set period of time.
 /// </summary>
 public class CurveLerper : MonoBehaviour
 {
-    private AnimationCurve curve;
+    [SerializeField] private AnimationCurve curve;
+
     private float startValue, endValue;
     private float currentTimeSeconds;
     private float timeToCompleteSeconds;
@@ -31,9 +33,8 @@ public class CurveLerper : MonoBehaviour
     /// <summary>
     /// Start moving over the curve. It takes a start value, end value, and the time it will take to reach the end of the curve.
     /// </summary>
-    public void LerpOnCurve(AnimationCurve curve, float startValue, float endValue, float timeToCompleteSeconds)
+    public void LerpOnCurve(float startValue, float endValue, float timeToCompleteSeconds)
     {
-        this.curve = curve;
         this.startValue = startValue;
         this.endValue = endValue;
         this.timeToCompleteSeconds = timeToCompleteSeconds;

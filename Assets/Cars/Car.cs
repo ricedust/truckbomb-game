@@ -19,7 +19,7 @@ public class Car : MonoBehaviour, IPoolable
     [SerializeField] private float explosionRadius;
     [SerializeField] private float explosionForce;
 
-    private Action<GameObject> OnDespawn;
+    private Action<GameObject> Despawn;
 
     private bool hasCrashed;
 
@@ -33,10 +33,7 @@ public class Car : MonoBehaviour, IPoolable
         }
     }
 
-    public void InitializeDespawnAction(Action<GameObject> DespawnAction)
-    {
-        OnDespawn = DespawnAction;
-    }
+    public void InitializeDespawnAction(Action<GameObject> Despawn) => this.Despawn = Despawn;
 
     public void ApplyForce(Vector2 forceVector)
     {
@@ -109,7 +106,7 @@ public class Car : MonoBehaviour, IPoolable
         if (hasCrashed)
         {
             Explode();
-            OnDespawn(gameObject);
+            Despawn(gameObject);
         }
         else Crash();
     }
@@ -117,6 +114,6 @@ public class Car : MonoBehaviour, IPoolable
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // despawn trigger
-        if (collision.TryGetComponent(out DespawnTrigger despawnTrigger)) OnDespawn(gameObject);
+        if (collision.TryGetComponent(out DespawnTrigger despawnTrigger)) Despawn(gameObject);
     }
 }
