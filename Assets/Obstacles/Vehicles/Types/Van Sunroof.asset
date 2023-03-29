@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd78aefff4e43e589c8d7d9d0257c6b, type: 3}
+  m_Name: Van Sunroof
+  m_EditorClassIdentifier: 
+  <probability>k__BackingField: 10
+  <colliderPoints>k__BackingField:
+  - {x: 0.15625, y: 0.4375}
+  - {x: -0.15625, y: 0.4375}
+  - {x: -0.15625, y: -0.4375}
+  - {x: 0.15625, y: -0.4375}
+  <sprites>k__BackingField:
+  - <sprite>k__BackingField: {fileID: -1871832009, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -1265607447, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -2000412276, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -652160120, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 5
+  - <sprite>k__BackingField: {fileID: 1565355856, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 1390972652, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 983599372, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -17660527, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -315066154, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -348524135, guid: 8109537f6ed46824abf9224e223d88b8, type: 3}
+    <probability>k__BackingField: 5

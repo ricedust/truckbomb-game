@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd78aefff4e43e589c8d7d9d0257c6b, type: 3}
+  m_Name: Tanker
+  m_EditorClassIdentifier: 
+  <probability>k__BackingField: 5
+  <colliderPoints>k__BackingField:
+  - {x: 0.15625, y: 0.4375}
+  - {x: -0.15625, y: 0.4375}
+  - {x: -0.15625, y: -0.4375}
+  - {x: 0.15625, y: -0.4375}
+  <sprites>k__BackingField:
+  - <sprite>k__BackingField: {fileID: -32035557, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -1867841451, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -1993550069, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: 879439523, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 5
+  - <sprite>k__BackingField: {fileID: -127190265, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 5
+  - <sprite>k__BackingField: {fileID: -567789960, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 5
+  - <sprite>k__BackingField: {fileID: -917177422, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -1949308128, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 736033838, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -1429070679, guid: 3d00eef6d75ef514eb265520bfb74c66, type: 3}
+    <probability>k__BackingField: 5

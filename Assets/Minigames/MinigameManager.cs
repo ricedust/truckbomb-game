@@ -16,12 +16,12 @@ public class MinigameManager : StaticInstance<MinigameManager>
 
     private void OnEnable()
     {
-        PlayerCollision.OnCarCollision += SpawnMinigame;
+        PlayerCollision.OnVehicleCollision += SpawnMinigame;
         Minigame.OnMinigameWon += FreeUpMinigamePosition;
     }
     private void OnDisable()
     {
-        PlayerCollision.OnCarCollision -= SpawnMinigame;
+        PlayerCollision.OnVehicleCollision -= SpawnMinigame;
         Minigame.OnMinigameWon -= FreeUpMinigamePosition;
     }
 

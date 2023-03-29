@@ -10,7 +10,7 @@ public class Bolt : MonoBehaviour, IPoolable
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.down * GameManager.instance.gameSpeed * Time.deltaTime);
+        transform.Translate(GameManager.instance.gameSpeed * Time.deltaTime * Vector2.down);
     }
 
     public void InitializeDespawnAction(Action<GameObject> Despawn) => this.Despawn = Despawn;
@@ -32,6 +32,5 @@ public class Bolt : MonoBehaviour, IPoolable
     public void ResetState()
     {
         // does nothing for now since the bolt state doesn't change
-        return;
     }
 }

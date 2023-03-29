@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd78aefff4e43e589c8d7d9d0257c6b, type: 3}
+  m_Name: Convertible
+  m_EditorClassIdentifier: 
+  <probability>k__BackingField: 5
+  <colliderPoints>k__BackingField:
+  - {x: 0.15625, y: 0.4375}
+  - {x: -0.15625, y: 0.4375}
+  - {x: -0.15625, y: -0.4375}
+  - {x: 0.15625, y: -0.4375}
+  <sprites>k__BackingField:
+  - <sprite>k__BackingField: {fileID: -359665776, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -945617154, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: 752125525, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: 2112648700, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 5
+  - <sprite>k__BackingField: {fileID: 829773668, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 1222645171, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 1328576820, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -840550724, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 1589955926, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -342787096, guid: 1a6000c0c73107645897d6e103acf109, type: 3}
+    <probability>k__BackingField: 5

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bd78aefff4e43e589c8d7d9d0257c6b, type: 3}
+  m_Name: SUV Sunroof
+  m_EditorClassIdentifier: 
+  <probability>k__BackingField: 10
+  <colliderPoints>k__BackingField:
+  - {x: 0.15625, y: 0.4375}
+  - {x: -0.15625, y: 0.4375}
+  - {x: -0.15625, y: -0.4375}
+  - {x: 0.15625, y: -0.4375}
+  <sprites>k__BackingField:
+  - <sprite>k__BackingField: {fileID: -347866895, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -102462459, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: 730618366, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 10
+  - <sprite>k__BackingField: {fileID: -1036368459, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 5
+  - <sprite>k__BackingField: {fileID: 649456300, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 1803964710, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 1183518088, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: 1830918115, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -1599209504, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 1
+  - <sprite>k__BackingField: {fileID: -1271019015, guid: fcacd8a81881568498872d3507561bfb, type: 3}
+    <probability>k__BackingField: 5

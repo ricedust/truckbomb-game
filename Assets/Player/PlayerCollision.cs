@@ -3,24 +3,24 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    [SerializeField] private float carCollisionForce;
+    [SerializeField] private float vehicleCollisionForce;
 
-    public static event Action OnCarCollision;
+    public static event Action OnVehicleCollision;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Car car))
+        if (collision.gameObject.TryGetComponent(out Vehicle vehicle))
         {
-            PushAway(car);
-            OnCarCollision?.Invoke();
+            PushAway(vehicle);
+            OnVehicleCollision?.Invoke();
         }
     }
 
-    private void PushAway(Car car)
+    private void PushAway(Vehicle vehicle)
     {
-        Vector2 angleOfCollision = (car.transform.position - transform.position);
+        Vector2 angleOfCollision = (vehicle.transform.position - transform.position);
         angleOfCollision.Normalize();
 
-        car.ApplyForce(angleOfCollision * carCollisionForce);
+        vehicle.ApplyForce(angleOfCollision * vehicleCollisionForce);
     }
 }
