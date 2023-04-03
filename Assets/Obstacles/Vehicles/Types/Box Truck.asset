@@ -20,7 +20,7 @@ MonoBehaviour:
   - {x: 0.1875, y: -0.4375}
   <sprites>k__BackingField:
   - <sprite>k__BackingField: {fileID: 584290859, guid: a7fdcee22cd69a54bbe1239fef819b56, type: 3}
-    <probability>k__BackingField: 10
+    <probability>k__BackingField: 15
   - <sprite>k__BackingField: {fileID: 549582822, guid: a7fdcee22cd69a54bbe1239fef819b56, type: 3}
     <probability>k__BackingField: 10
   - <sprite>k__BackingField: {fileID: -1078910818, guid: a7fdcee22cd69a54bbe1239fef819b56, type: 3}

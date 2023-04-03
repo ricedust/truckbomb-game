@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 7485442972519667607}
   - component: {fileID: 4978717463673226562}
   - component: {fileID: 1634548676}
+  - component: {fileID: -781005702800152731}
   m_Layer: 0
   m_Name: Bomb Minigame
   m_TagString: Untagged
@@ -454,12 +455,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68773bcea8dc1d44bc259f32d2f5212, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  poolableObject: {fileID: -781005702800152731}
   correctCodeText: {fileID: 4431945705486074841}
   inputCodeText: {fileID: 6584479284130079244}
   secondsLeftText: {fileID: 2177042958131322246}
   timeLimitSeconds: 10
   incorrectCodeDelaySeconds: 1
   codeLength: 5
+--- !u!114 &-781005702800152731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460098328286056264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77067dd03845446ca240ba03f046e876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4641066771346013497
 GameObject:
   m_ObjectHideFlags: 0

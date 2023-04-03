@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Rigidbody2D rigidbody2d;
     [SerializeField] private CurveLerper laneChangeLerper;
     [SerializeField] [Range(0, 4)] private int targetLane;
     [SerializeField] private float timeToChangeLaneSeconds;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.position = new Vector2(laneChangeLerper.currentValue, transform.position.y);
+        if (GameManager.instance.state != GameState.lose)
+        {
+            rigidbody2d.MovePosition(new Vector2(laneChangeLerper.currentValue, transform.position.y));
+        }
     }
 
     private void ChangeLane(int lanesToMove)
@@ -18,10 +22,10 @@ public class PlayerMovement : MonoBehaviour
         float startXPosition = transform.position.x;
 
         targetLane += lanesToMove;
-        // make sure target lane is valid
-        targetLane = Mathf.Clamp(targetLane, 0, EnvironmentManager.instance.GetNumLanes() - 1);
+        // clamp target lane to make sure it's in range
+        targetLane = Mathf.Clamp(targetLane, 0, EnvironmentManager.instance.laneXPositions.Length - 1);
 
-        float targetXPosition = EnvironmentManager.instance.GetLaneX(targetLane);
+        float targetXPosition = EnvironmentManager.instance.laneXPositions[targetLane];
 
         // start lane change animation
         laneChangeLerper.LerpOnCurve(startXPosition, targetXPosition, timeToChangeLaneSeconds);

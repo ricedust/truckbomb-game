@@ -1,30 +1,38 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public abstract class Minigame : MonoBehaviour, IPoolable
+public abstract class Minigame : MonoBehaviour
 {
+    [SerializeField] private PoolableObject poolableObject;
     public static event Action<Vector2> OnMinigameWon;
 
-    protected Action<GameObject> Despawn;
-    protected Vector2 minigamePosition;
-
-    private void OnEnable() => GameManager.OnAfterStateChanged += DespawnIfGameOver;
-    private void OnDisable() => GameManager.OnAfterStateChanged -= DespawnIfGameOver;
-
-    public void InitializeDespawnAction(Action<GameObject> Despawn) => this.Despawn = Despawn;
-
+    private Vector2 minigamePosition;
     public void SetPosition(Vector2 position) => minigamePosition = transform.position = position;
+
+    private void OnEnable()
+    {
+        GameManager.OnAfterStateChanged += DespawnIfGameOver;
+        poolableObject.OnReset += ResetState;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnAfterStateChanged -= DespawnIfGameOver;
+        poolableObject.OnReset -= ResetState;
+    }
+
+    private void DespawnIfGameOver(GameState gameState)
+    {
+        if (gameState == GameState.lose) poolableObject.Despawn();
+        GameManager.OnAfterStateChanged -= DespawnIfGameOver;
+    }
 
     public abstract void ResetState();
 
     protected void WinMinigame()
     {
         OnMinigameWon?.Invoke(minigamePosition);
-        Despawn(gameObject);
-    }
-
-    private void DespawnIfGameOver(GameState gameState)
-    {
-        if (gameState == GameState.lose) Despawn(gameObject);
+        poolableObject.Despawn();
     }
 }

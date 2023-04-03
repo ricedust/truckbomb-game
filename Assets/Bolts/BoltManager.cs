@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using Random = UnityEngine.Random;
 
 public class BoltManager : StaticInstance<BoltManager>
 {
@@ -11,7 +12,7 @@ public class BoltManager : StaticInstance<BoltManager>
     [SerializeField] private float spawnIntervalInSeconds;
     [SerializeField] private float spawnYPosition;
 
-    private int boltsCollected;
+    public int boltsCollected { get; private set; }
 
     // attach and detach listener to OnBoltCollected event
     private void OnEnable() => Bolt.OnBoltCollected += UpdateBoltsCollected;
@@ -27,7 +28,7 @@ public class BoltManager : StaticInstance<BoltManager>
         while (GameManager.instance.state == GameState.inGame)
         {
             yield return new WaitForSeconds(spawnIntervalInSeconds);
-            GameObject bolt = boltPool.Get();
+            GameObject bolt = boltPool.Spawn();
             bolt.transform.position = GenerateSpawnPosition();
         }
     }
@@ -37,8 +38,8 @@ public class BoltManager : StaticInstance<BoltManager>
     /// </summary>
     private Vector2 GenerateSpawnPosition()
     {
-        int laneIndex = Random.Range(0, EnvironmentManager.instance.GetNumLanes());
-        float laneXPos = EnvironmentManager.instance.GetLaneX(laneIndex);
+        int laneIndex = Random.Range(0, EnvironmentManager.instance.laneXPositions.Length);
+        float laneXPos = EnvironmentManager.instance.laneXPositions[laneIndex];
 
         return new Vector2(laneXPos, spawnYPosition);
     }

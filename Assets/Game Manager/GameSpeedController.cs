@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class GameSpeedController : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private CurveLerper gameSpeedCurve;
+    [SerializeField] private GameSpeedBooster gameSpeedBooster;
+    [Header("Parameters")]
     [SerializeField] private float initialSpeed;
     [SerializeField] private float finalSpeed;
     [SerializeField] private float timeToFinalSpeedSeconds;
     [SerializeField] private float timeToStopOnGameOverSeconds;
 
     private Action<float> SetGameSpeed;
+    private float currentSpeed;
 
     private void OnEnable()
     {
@@ -24,7 +28,12 @@ public class GameSpeedController : MonoBehaviour
         GameManager.OnAfterStateChanged -= RampDownSpeed;
     }
 
-    public void Initialize(Action<float> SetGameSpeed) => this.SetGameSpeed = SetGameSpeed;
+    private void Update()
+    {
+        SetGameSpeed(currentSpeed + gameSpeedBooster.currentSpeedIncrease);
+    }
+
+    public void Initialize(Action<float> setGameSpeed) => SetGameSpeed = setGameSpeed;
     
     private void RampUpSpeed(GameState gameState)
     {
@@ -47,7 +56,7 @@ public class GameSpeedController : MonoBehaviour
     {
         while (gameSpeedCurve.enabled)
         {
-            SetGameSpeed(gameSpeedCurve.currentValue);
+            currentSpeed = gameSpeedCurve.currentValue;
             yield return null;
         }
     }

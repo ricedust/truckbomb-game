@@ -2,6 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+
+
 public class BombMinigame : Minigame, IPointerClickHandler
 {
     [SerializeField] private TextMeshPro correctCodeText;
@@ -15,9 +17,7 @@ public class BombMinigame : Minigame, IPointerClickHandler
     private string inputCode;
     private string correctCode;
     private float secondsLeft;
-
     private bool isNumpadLocked;
-
     public override void ResetState()
     {
         MinigameManager.instance.isBombOnScreen = true;
@@ -46,7 +46,6 @@ public class BombMinigame : Minigame, IPointerClickHandler
     {
         while (secondsLeft > 0)
         {
-            Debug.Log(Time.timeScale);
             secondsLeft -= Time.deltaTime;
             secondsLeftText.text = ((int)secondsLeft).ToString();
             yield return null;

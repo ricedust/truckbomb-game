@@ -6,22 +6,21 @@ public class MinigameManager : StaticInstance<MinigameManager>
 {
     [SerializeField] private List<Vector2> minigamePositions;
     [SerializeField] private List<ObjectPooler> minigamePools; // excluding bomb minigame pool
-
     [SerializeField] private ObjectPooler bombMinigamePool;
     [SerializeField] [Range(0, 1)] private float bombMinigameChance;
 
     private Dictionary<Vector2, bool> availabilityByPosition;
 
-    public bool isBombOnScreen { get; set; } = false;
+    public bool isBombOnScreen { get; set; }
 
     private void OnEnable()
     {
-        PlayerCollision.OnVehicleCollision += SpawnMinigame;
+        PlayerCollision.OnPlayerDamaged += SpawnMinigame;
         Minigame.OnMinigameWon += FreeUpMinigamePosition;
     }
     private void OnDisable()
     {
-        PlayerCollision.OnVehicleCollision -= SpawnMinigame;
+        PlayerCollision.OnPlayerDamaged -= SpawnMinigame;
         Minigame.OnMinigameWon -= FreeUpMinigamePosition;
     }
 
@@ -29,24 +28,30 @@ public class MinigameManager : StaticInstance<MinigameManager>
     {
         availabilityByPosition = minigamePositions.ToDictionary(pos => pos, availability => true);
     }
+
     public void SpawnMinigame()
     {
-        var openMinigamePositions = availabilityByPosition.Where(pos => pos.Value).Select(pos => pos.Key);
+        List<Vector2> openMinigamePositions = availabilityByPosition.
+            Where(pos => pos.Value).
+            Select(pos => pos.Key).ToList();
         if (openMinigamePositions.Any())
         {
             // choose random Vector2 from open minigame positions
-            int randomIndex = Random.Range(0, openMinigamePositions.Count());
+            int randomIndex = Random.Range(0, openMinigamePositions.Count);
             Vector2 minigamePosition = openMinigamePositions.ElementAt(randomIndex);
 
             // assign false to availability at minigameposition
             availabilityByPosition[minigamePosition] = false;
 
-            // pick minigame, reset it, and move it to the position
+            // pick minigame and spawn it at the position
             Minigame minigame = PickMinigame();
-            minigame.ResetState();
             minigame.SetPosition(minigamePosition);
         }
-        else GameManager.instance.ChangeState(GameState.lose);
+        else
+        {
+            GameManager.instance.ChangeState(GameState.lose);
+            PlayerCollision.OnPlayerDamaged -= SpawnMinigame;
+        }
     }
 
     private Minigame PickMinigame()
@@ -55,10 +60,10 @@ public class MinigameManager : StaticInstance<MinigameManager>
         if (WillGetBomb())
         {
             isBombOnScreen = true;
-            return bombMinigamePool.Get().GetComponent<Minigame>();
+            return bombMinigamePool.Spawn().GetComponent<Minigame>();
         }
         // otherwise, pick a regular minigame
-        return minigamePools[Random.Range(0, minigamePools.Count)].Get().GetComponent<Minigame>();
+        return minigamePools[Random.Range(0, minigamePools.Count)].Spawn().GetComponent<Minigame>();
     }
 
     // returns true if a bomb is rolled and there isn't already a bomb on screen

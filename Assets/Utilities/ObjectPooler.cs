@@ -1,34 +1,45 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.Serialization;
 
 public class ObjectPooler : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private PoolableObject prefab;
     [SerializeField] private int defaultCapacity;
-    [SerializeField] private int maxCapacity;
+    [SerializeField] private int maxSize;
 
-    private ObjectPool<GameObject> objectPool;
+    private ObjectPool<PoolableObject> objectPool;
 
     private void Awake()
     {
-        objectPool = new ObjectPool<GameObject>(() =>
-        { // create function
-            GameObject gameObject = Instantiate(prefab, transform);
-            gameObject.GetComponent<IPoolable>().InitializeDespawnAction(DespawnAction);
-            return gameObject;
-        }, gameObject =>
-        { // action on get
-            gameObject.SetActive(true);
-        }, gameObject =>
-        { // action on release
-            gameObject.SetActive(false);
-        }, gameObject =>
-        { // action on destroy
-            Destroy(gameObject);
-        }, false, defaultCapacity, maxCapacity);
+        objectPool = new ObjectPool<PoolableObject>(() =>
+        {
+            // create function
+            PoolableObject poolableObject = Instantiate(prefab, transform);
+            poolableObject.InitializeDespawnAction(Despawn);
+            return poolableObject;
+        }, poolableObject =>
+        {
+            // action on get
+            poolableObject.gameObject.SetActive(true);
+        }, poolableObject =>
+        {
+            // action on release
+            poolableObject.gameObject.SetActive(false);
+        }, poolableObject =>
+        {
+            // action on destroy
+            Destroy(poolableObject.gameObject);
+        }, false, defaultCapacity, maxSize);
     }
-    
-    private void DespawnAction(GameObject gameObject) => objectPool.Release(gameObject);
 
-    public GameObject Get() => objectPool.Get();
+    private void Despawn(PoolableObject poolableObject) => objectPool.Release(poolableObject);
+
+    /// <summary>Activate and reset an object from the pool</summary>
+    public GameObject Spawn()
+    {
+        PoolableObject poolableObject = objectPool.Get();
+        poolableObject.Reset();
+        return poolableObject.gameObject;
+    }
 }

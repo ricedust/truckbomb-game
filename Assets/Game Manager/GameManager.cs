@@ -59,7 +59,7 @@ public class GameManager : StaticInstance<GameManager>
     private void HandleInGame()
     {
         BoltManager.instance.StartSpawningBolts();
-        ObstacleManager.instance.StartSpawningVehicles();
+        // ObstacleManager.instance.StartSpawningVehicles();
     }
 
     private void HandleLosing()

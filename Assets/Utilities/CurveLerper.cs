@@ -1,5 +1,5 @@
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 
 /// <summary>
 /// CurveLerper tracks the value of a curve over a set period of time.
@@ -19,7 +19,6 @@ public class CurveLerper : MonoBehaviour
 
     private void Update()
     {
-        // Debug.Log(currentValue);
         if (currentTimeSeconds < timeToCompleteSeconds)
         {
             float timeToCompleteRatio = currentTimeSeconds / timeToCompleteSeconds;
@@ -39,7 +38,16 @@ public class CurveLerper : MonoBehaviour
         this.endValue = endValue;
         this.timeToCompleteSeconds = timeToCompleteSeconds;
 
-        enabled = true;
+        currentValue = startValue;
         currentTimeSeconds = 0;
+        enabled = true;
+    }
+
+    public void ResetState()
+    {
+        startValue = endValue = 0;
+        currentTimeSeconds = 0;
+        timeToCompleteSeconds = 0;
+        currentValue = 0;
     }
 }

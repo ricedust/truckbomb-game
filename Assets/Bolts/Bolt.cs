@@ -1,36 +1,26 @@
 using System;
 using UnityEngine;
 
-public class Bolt : MonoBehaviour, IPoolable
+public class Bolt : MonoBehaviour
 {
-    private Action<GameObject> Despawn;
+    [SerializeField] private Rigidbody2D rigidBody2D;
+    [SerializeField] private PoolableObject poolableObject;
 
     public static event Action OnBoltCollected;
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        transform.Translate(GameManager.instance.gameSpeed * Time.deltaTime * Vector2.down);
+        float gameSpeed = GameManager.instance.gameSpeed;
+        Vector3 delta = gameSpeed * Time.fixedDeltaTime * Vector2.down;
+        rigidBody2D.MovePosition(transform.position + delta);
     }
-
-    public void InitializeDespawnAction(Action<GameObject> Despawn) => this.Despawn = Despawn;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Debug.Log("Bolt entered trigger");
-        if (collision.TryGetComponent(out DespawnTrigger despawnTrigger)) // despawn trigger
-        {
-            Despawn(gameObject);
-        }
         if (collision.TryGetComponent(out Player player)) // player
         {
             OnBoltCollected?.Invoke(); // fire bolt collected event
-            Despawn(gameObject);
+            poolableObject.Despawn();
         }
-    }
-
-    public void ResetState()
-    {
-        // does nothing for now since the bolt state doesn't change
     }
 }

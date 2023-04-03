@@ -13,6 +13,15 @@ GameObject:
   - component: {fileID: -1148392268939521200}
   - component: {fileID: 1744267141076527266}
   - component: {fileID: 1160876151705223360}
+  - component: {fileID: -4115729317506419368}
+  - component: {fileID: 4002001815883185437}
+  - component: {fileID: 5666964895220368235}
+  - component: {fileID: -3724033498042189722}
+  - component: {fileID: 7615942738634829323}
+  - component: {fileID: 3006889533668541521}
+  - component: {fileID: 5844359304990125477}
+  - component: {fileID: -6008876169349251678}
+  - component: {fileID: 8101007585746348083}
   m_Layer: 0
   m_Name: Vehicle
   m_TagString: Untagged
@@ -124,9 +133,9 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160876151705223363}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
-  m_UseFullKinematicContacts: 0
+  m_UseFullKinematicContacts: 1
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -149,13 +158,178 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137e3fda12044404e91d866035bf5b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vehicleDriver: {fileID: -4115729317506419368}
+  laneChanger: {fileID: 5666964895220368235}
+  vehicleCollision: {fileID: 3006889533668541521}
+  vehicleCrasher: {fileID: 7615942738634829323}
+--- !u!114 &-4115729317506419368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb03d68db501469c8e9bc814dbe5b8fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vehicleCollision: {fileID: 3006889533668541521}
+  vehicleSensor: {fileID: 4002001815883185437}
+  laneChanger: {fileID: 5666964895220368235}
   rigidbody2d: {fileID: 1744267141076527266}
-  vehiclePicker: {fileID: 0}
-  speedRelativeToGameSpeed: 5
-  brakingForce: 1000
+  brakeSpeed: 1.5
+  recoverySpeed: 12
+--- !u!114 &4002001815883185437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2de2b4799be462b9bb275d6d6909050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collider2d: {fileID: -1148392268939521200}
+  forwardSensorLength: 3
+  minDistanceToVehicleInFront: 1.5
+--- !u!114 &5666964895220368235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02929153fad4a6494d02af8749a4b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolableObject: {fileID: -6008876169349251678}
+  vehicleCollision: {fileID: 3006889533668541521}
+  collider2d: {fileID: -1148392268939521200}
+  laneChangeLerper: {fileID: -3724033498042189722}
+  minLaneChangeIntervalSeconds: 1.5
+  maxLaneChangeIntervalSeconds: 5
+  minMergeDurationSeconds: 1
+  maxMergeDurationSeconds: 2
+--- !u!114 &-3724033498042189722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639179b2c1bb3594295a9e05c0f01c4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.6854854
+      outSlope: 0.6854854
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.17505188
+    - serializedVersion: 3
+      time: 0.43489346
+      value: 0.99123573
+      inSlope: 1.0333443
+      outSlope: 1.0333443
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33216348
+      outWeight: 0.36585155
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.71057767
+      outSlope: 0.71057767
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.0924818
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7615942738634829323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245df0198844de8a732c0c275ed0424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rigidbody2d: {fileID: 1744267141076527266}
+  poolableObject: {fileID: -6008876169349251678}
+  vehicleCollision: {fileID: 3006889533668541521}
+  brakingForce: 1500
   brakingDrag: 1
   brakingAngularDrag: 1
-  panicSteeringTorqueMultiplier: 300
-  panicSteeringForce: 600
+  panicSteeringTorqueMultiplier: 700
+  panicSteeringForce: 1000
+--- !u!114 &3006889533668541521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca16e9da5fd045cf823ed51491e55970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolableObject: {fileID: -6008876169349251678}
+  exploder: {fileID: 5844359304990125477}
+--- !u!114 &5844359304990125477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b248c4a7c6944488a550ce502dc424f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   explosionRadius: 10
   explosionForce: 5
+--- !u!114 &-6008876169349251678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77067dd03845446ca240ba03f046e876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8101007585746348083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160876151705223363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9141e3a6f144b62b1837573426255d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolableObject: {fileID: -6008876169349251678}

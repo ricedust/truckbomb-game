@@ -14,14 +14,14 @@ public class VehiclePicker : MonoBehaviour
 
     private void Awake()
     {
-        cumulativeTypeWeights = CreateCumulativeSumListFrom(vehicleTypes.Select(type => type.probability).ToList());
+        cumulativeTypeWeights = CreateCumulativeSumList(vehicleTypes.Select(type => type.probability).ToList());
         cumulativeSpriteWeightsByType = new Dictionary<VehicleType, List<int>>();
     }
 
     /// <summary>
     /// Takes a list of integers and returns a list where each element is the sum of all integers that came before it
     /// </summary>
-    private static List<int> CreateCumulativeSumListFrom(List<int> list)
+    private static List<int> CreateCumulativeSumList(List<int> list)
     {
         int runningSum = 0;
         List<int> cumulativeList = new List<int>(new int[list.Count]);
@@ -70,10 +70,11 @@ public class VehiclePicker : MonoBehaviour
 
     private void AddSpriteWeightsToDictionary(VehicleType type)
     {
+        // save the cumulative sprite weights for a type if it isn't already in the dictionary
         if (!cumulativeSpriteWeightsByType.ContainsKey(type))
         {
             cumulativeSpriteWeightsByType[type] =
-                CreateCumulativeSumListFrom(type.sprites.Select(sprite => sprite.probability).ToList());
+                CreateCumulativeSumList(type.sprites.Select(sprite => sprite.probability).ToList());
         }
     }
 }
