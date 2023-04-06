@@ -6,11 +6,29 @@ public class VehicleSpawnFlip : MonoBehaviour
 {
     [SerializeField] private VehicleSpawner spawner;
 
-    private void OnEnable() => GameManager.OnAfterStateChanged += StartMonitoringGameSpeed;
-    private void OnDisable() => GameManager.OnAfterStateChanged -= StartMonitoringGameSpeed;
+    private void OnEnable()
+    {
+        GameManager.OnAfterStateChanged += FlipOnStart;
+        GameManager.OnAfterStateChanged += StartMonitoringGameSpeed;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnAfterStateChanged -= FlipOnStart;
+        GameManager.OnAfterStateChanged -= StartMonitoringGameSpeed;
+    }
 
     public static event Action OnSpawnFlipped;
-    public static bool isSpawnFlipped { get; private set; }
+    public static bool isSpawnFlipped { get; private set; } = true;
+
+    private void FlipOnStart(GameState gameState)
+    {
+        if (gameState == GameState.inGame)
+        {
+            isSpawnFlipped = false;
+            OnSpawnFlipped?.Invoke();
+        }
+    }
     
     private void StartMonitoringGameSpeed(GameState gameState)
     {

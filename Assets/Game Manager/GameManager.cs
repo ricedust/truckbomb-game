@@ -51,9 +51,6 @@ public class GameManager : StaticInstance<GameManager>
     {
         gameSpeedController.Initialize(SetGameSpeed);
         distanceTracker.Initialize(SetDisanceTraveled);
-
-        // call ChangeState again to enter gameplay
-        ChangeState(GameState.inGame);
     }
 
     private void HandleInGame()

@@ -7,10 +7,10 @@ public class VehicleSpawnInterval : MonoBehaviour
     [SerializeField] private float distanceInterval;
     [SerializeField] private float raycastYOffset; // prevent raycast from starting inside vehicles
 
-    private Vector2 spawnDirection = Vector2.down;
+    private Vector2 spawnDirection = Vector2.up;
     private void OnEnable() => VehicleSpawnFlip.OnSpawnFlipped += FlipSpawnDirection;
     private void OnDisable() => VehicleSpawnFlip.OnSpawnFlipped -= FlipSpawnDirection;
-    private void FlipSpawnDirection() => spawnDirection = Vector2.up;
+    private void FlipSpawnDirection() => spawnDirection *= -1;
     
     /// <summary>Returns true when a spawn distance interval has been reached</summary>
     public bool IsDistanceIntervalReached(float spawnYLevel)

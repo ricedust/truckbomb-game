@@ -20,6 +20,7 @@ public class VehicleCollision : MonoBehaviour
         // explode and despawn vehicle on the second collision
         if (collisionCount > 1)
         {
+            EffectsManager.instance.CreateExplosion(transform.position);
             exploder.Explode();
             poolableObject.Despawn();
         }
