@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -9,6 +8,7 @@ public class BackgroundController : MonoBehaviour
     [SerializeField] private Background bottomBackground;
     [SerializeField] private Background topBackground;
     [SerializeField] private Vector2 startPosition;
+    [SerializeField] private Vector2 endPosition; 
 
     private Queue<Background> backgroundQueue = new();
 
@@ -17,28 +17,46 @@ public class BackgroundController : MonoBehaviour
         // give the top and bottom backgrounds random sprites and queue them
         bottomBackground.SetSprite(GetRandomSprite());
         backgroundQueue.Enqueue(bottomBackground);
-        
+
         topBackground.SetSprite((GetRandomSprite()));
         backgroundQueue.Enqueue(topBackground);
     }
 
     private void Update()
     {
-        // if the bottom background has left the screen
-        if (backgroundQueue.Peek().transform.position.y <= -startPosition.y)
+        ScrollBackgrounds();
+        // reset bottom background once it has fully left the screen
+        if (backgroundQueue.Peek().transform.position.y <= endPosition.y)
         {
-            // move it to the top
-            Background bottom = backgroundQueue.Dequeue();
-            bottom.transform.position = startPosition;
-            
-            // give it a random sprite
-            bottom.SetSprite(GetRandomSprite());
-            
-            // return it to the end of the queue
-            backgroundQueue.Enqueue(bottom);
+            ResetBottomBackground();
         }
     }
 
+    private void ScrollBackgrounds()
+    {
+        float distance = GameManager.instance.gameSpeed * Time.deltaTime;
+        bottomBackground.Scroll(distance);
+        topBackground.Scroll(distance);
+    }
+
+    private void ResetBottomBackground()
+    {
+        // dequeue background
+        Background bottom = backgroundQueue.Dequeue();
+
+        // give it a random sprite
+        bottom.SetSprite(GetRandomSprite());
+
+        // the background probably overshot the end position, so record this difference
+        float gap = endPosition.y - bottom.transform.position.y;
+            
+        // move the background to the top, accounting for gap
+        bottom.transform.position = startPosition + (gap * Vector2.down);
+
+        // return the background to queue
+        backgroundQueue.Enqueue(bottom);
+    }
+    
     private Sprite GetRandomSprite()
     {
         return backgroundSprites[Random.Range(0, backgroundSprites.Count)];

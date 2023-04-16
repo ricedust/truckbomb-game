@@ -1394,7 +1394,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c479cfd784345d847b41a6a9ae097ad4, type: 3}
   bottomBackground: {fileID: 166974467}
   topBackground: {fileID: 1957180336}
-  startPosition: {x: 0, y: 13.8}
+  startPosition: {x: 0, y: 30.9375}
+  endPosition: {x: 0, y: -14.0625}
 --- !u!1 &947754965
 GameObject:
   m_ObjectHideFlags: 0
@@ -2146,7 +2147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSpeedCurve: {fileID: 1249564973}
   gameSpeedBooster: {fileID: 1249564977}
-  initialSpeed: 9
+  initialSpeed: 9.5
   finalSpeed: 15
   timeToFinalSpeedSeconds: 600
   timeToStopOnGameOverSeconds: 5
@@ -2546,6 +2547,10 @@ PrefabInstance:
     - target: {fileID: 8802940520536474281, guid: 6c63c6285ecaec74aab5655e35d63258, type: 3}
       propertyPath: m_Name
       value: Bottom Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802940520536474281, guid: 6c63c6285ecaec74aab5655e35d63258, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c63c6285ecaec74aab5655e35d63258, type: 3}

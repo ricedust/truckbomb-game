@@ -7,10 +7,8 @@ public class Background : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     
     public void SetSprite(Sprite sprite) => spriteRenderer.sprite = sprite;
-    private void Update() => Scroll();
-    private void Scroll()
+    public void Scroll(float distance)
     {
-        float speed = GameManager.instance.gameSpeed;
-        background.Translate(speed * Time.deltaTime * Vector2.down);
+        background.Translate(distance * Vector2.down);
     }
 }

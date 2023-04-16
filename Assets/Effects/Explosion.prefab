@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3109456342823561605}
   - component: {fileID: 3109456342823561604}
   - component: {fileID: -8106978769434525757}
+  - component: {fileID: 483665464664459432}
   - component: {fileID: 3109456342823561611}
   - component: {fileID: 1598696314772762975}
   m_Layer: 0
@@ -4832,6 +4833,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolableObject: {fileID: 1598696314772762975}
+--- !u!114 &483665464664459432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109456342823561610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a82d0213ed8425693b0e12cc571a7e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  percentGameSpeed: 50
 --- !u!199 &3109456342823561611
 ParticleSystemRenderer:
   serializedVersion: 6
