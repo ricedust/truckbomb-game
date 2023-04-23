@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    [SerializeField] private PlayerInvincibility playerInvincibility;
     [SerializeField] private float vehicleCollisionForce;
 
     public static event Action OnPlayerDamaged;
@@ -13,9 +14,10 @@ public class PlayerCollision : MonoBehaviour
         {
             PushAway(vehicle);
             
-            // player should be immune if vehicle has already been hit or player has powerup
-            if (vehicle.collisionCount > 1 || PowerupManager.instance.isPowerupActive) return;
-            
+            // player should not take damage if the vehicle has already been hit
+            // or if the player is in an invincible state
+            if (vehicle.collisionCount > 1
+                || playerInvincibility.IsInvincible()) return;
             OnPlayerDamaged?.Invoke();
         }
     }
