@@ -69,7 +69,6 @@ public class VehicleCrasher : MonoBehaviour
     
     private void EnableCrashPhysics()
     {
-        rigidbody2d.isKinematic = false;
         rigidbody2d.drag = brakingDrag;
         rigidbody2d.angularDrag = brakingAngularDrag;
         vehicleCollision.OnCollision -= EnableCrashPhysics;
@@ -80,8 +79,6 @@ public class VehicleCrasher : MonoBehaviour
         noiseSeed = Random.value * 1000;
         
         transform.eulerAngles = Vector2.zero;
-        
-        rigidbody2d.isKinematic = true;
         rigidbody2d.velocity = Vector2.zero;
         rigidbody2d.angularVelocity = 0;
         rigidbody2d.drag = 0;

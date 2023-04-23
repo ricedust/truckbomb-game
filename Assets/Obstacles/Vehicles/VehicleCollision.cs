@@ -12,6 +12,8 @@ public class VehicleCollision : MonoBehaviour
     private void OnEnable() => poolableObject.OnReset += ResetCollisions;
     private void OnDisable() => poolableObject.OnReset -= ResetCollisions;
     private void ResetCollisions() => collisionCount = 0;
+
+    public void ForceCollision() => collisionCount++;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         collisionCount++;
