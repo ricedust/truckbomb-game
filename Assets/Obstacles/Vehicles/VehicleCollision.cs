@@ -12,7 +12,6 @@ public class VehicleCollision : MonoBehaviour
     private void OnEnable() => poolableObject.OnReset += ResetCollisions;
     private void OnDisable() => poolableObject.OnReset -= ResetCollisions;
     private void ResetCollisions() => collisionCount = 0;
-
     public void ForceCollision() => collisionCount++;
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -22,7 +21,6 @@ public class VehicleCollision : MonoBehaviour
         // explode and despawn vehicle on the second collision
         if (collisionCount > 1)
         {
-            EffectsManager.instance.CreateExplosion(transform.position);
             exploder.Explode();
             poolableObject.Despawn();
         }

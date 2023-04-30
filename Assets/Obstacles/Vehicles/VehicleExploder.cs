@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class VehicleExploder : MonoBehaviour
 {
@@ -6,11 +7,14 @@ public class VehicleExploder : MonoBehaviour
     [SerializeField] private float explosionForce;
     [SerializeField] private int maxAffectedVehicles;
 
+    public static event Action<Vector2> OnExplosion;
+    
     /// <summary>Apply outward force to all other vehicles in explosion radius</summary>
     public void Explode()
     {
         Vector2 currentPosition = transform.position;
-
+        OnExplosion.Invoke(currentPosition);
+        
         // get colliders for all vehicles in radius
         Collider2D[] colliders = new Collider2D[maxAffectedVehicles];
         Physics2D.OverlapCircleNonAlloc(currentPosition, explosionRadius, colliders);

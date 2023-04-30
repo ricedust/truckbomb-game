@@ -17,11 +17,13 @@ public class MinigameManager : StaticInstance<MinigameManager>
     {
         PlayerCollision.OnPlayerDamaged += SpawnMinigame;
         Minigame.OnMinigameWon += FreeUpMinigamePosition;
+        GameManager.OnAfterStateChanged += StopSpawning;
     }
     private void OnDisable()
     {
         PlayerCollision.OnPlayerDamaged -= SpawnMinigame;
         Minigame.OnMinigameWon -= FreeUpMinigamePosition;
+        GameManager.OnAfterStateChanged -= StopSpawning;
     }
 
     private void Start()
@@ -34,6 +36,7 @@ public class MinigameManager : StaticInstance<MinigameManager>
         List<Vector2> openMinigamePositions = availabilityByPosition.
             Where(pos => pos.Value).
             Select(pos => pos.Key).ToList();
+        
         if (openMinigamePositions.Any())
         {
             // choose random Vector2 from open minigame positions
@@ -50,7 +53,6 @@ public class MinigameManager : StaticInstance<MinigameManager>
         else
         {
             GameManager.instance.ChangeState(GameState.lose);
-            PlayerCollision.OnPlayerDamaged -= SpawnMinigame;
         }
     }
 
@@ -72,5 +74,11 @@ public class MinigameManager : StaticInstance<MinigameManager>
     private void FreeUpMinigamePosition(Vector2 minigamePosition)
     {
         availabilityByPosition[minigamePosition] = true;
+    }
+    private void StopSpawning(GameState state)
+    {
+        // stop spawning minigames on game over
+        if (state != GameState.lose) return;
+        PlayerCollision.OnPlayerDamaged -= SpawnMinigame;
     }
 }
