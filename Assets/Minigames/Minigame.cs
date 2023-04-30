@@ -28,7 +28,7 @@ public abstract class Minigame : MonoBehaviour
         GameManager.OnAfterStateChanged -= DespawnIfGameOver;
     }
 
-    public abstract void ResetState();
+    protected abstract void ResetState();
 
     protected void WinMinigame()
     {

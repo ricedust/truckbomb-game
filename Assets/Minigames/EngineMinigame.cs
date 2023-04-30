@@ -16,7 +16,7 @@ public class EngineMinigame : Minigame, IPointerDownHandler
         if (clickCount >= clicksRequired) WinMinigame();
     }
 
-    public override void ResetState()
+    protected override void ResetState()
     {
         clickCount = 0;
         clickCountText.text = clicksRequired.ToString();

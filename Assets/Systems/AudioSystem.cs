@@ -15,12 +15,16 @@ public class AudioSystem : Singleton<AudioSystem> {
     {
         GameManager.OnAfterStateChanged += StartMusic;
         GameManager.OnAfterStateChanged += StopMusic;
+        SoundToggle.OnSoundToggled += ToggleSound;
+        MusicToggle.OnMusicToggled += ToggleMusic;
     }
 
     private void OnDisable()
     {
         GameManager.OnAfterStateChanged -= StartMusic;
         GameManager.OnAfterStateChanged -= StopMusic;
+        SoundToggle.OnSoundToggled -= ToggleSound;
+        MusicToggle.OnMusicToggled -= ToggleMusic;
     }
 
     private void Start()
@@ -70,5 +74,15 @@ public class AudioSystem : Singleton<AudioSystem> {
             StopAllCoroutines();
             musicSource.Stop();
         }
+    }
+
+    private void ToggleSound(bool isEnabled)
+    {
+        soundsSource.mute = !isEnabled;
+        ambientSource.mute = !isEnabled;
+    }
+    private void ToggleMusic(bool isEnabled)
+    {
+        musicSource.mute = !isEnabled;
     }
 }

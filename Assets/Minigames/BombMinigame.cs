@@ -18,7 +18,8 @@ public class BombMinigame : Minigame, IPointerClickHandler
     private string correctCode;
     private float secondsLeft;
     private bool isNumpadLocked;
-    public override void ResetState()
+
+    protected override void ResetState()
     {
         MinigameManager.instance.isBombOnScreen = true;
         isNumpadLocked = false;

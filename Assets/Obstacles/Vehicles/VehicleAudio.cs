@@ -12,9 +12,12 @@ public class VehicleAudio : MonoBehaviour
     [SerializeField] private float chanceToSkidOnCollision;
     [SerializeField] private float chanceToHonkOnCollision;
 
+    private bool isSoundEnabled = true;
+    
     private void OnEnable()
     {
         vehicleCollision.OnCollision += PlaySFX;
+        SoundToggle.OnSoundToggled += ToggleSound;
     }
 
     private void OnDisable()
@@ -32,7 +35,7 @@ public class VehicleAudio : MonoBehaviour
                 AudioSystem.instance.PlaySound(skidSound, transform.position, sfxVolume);
             }
 
-            if (Random.value < chanceToHonkOnCollision) honkSource.Play();
+            if (Random.value < chanceToHonkOnCollision && isSoundEnabled) honkSource.Play();
         }
         else
         {
@@ -42,4 +45,6 @@ public class VehicleAudio : MonoBehaviour
 
         AudioSystem.instance.PlaySound(crashSound, transform.position, sfxVolume);
     }
+
+    private void ToggleSound(bool isEnabled) => isSoundEnabled = isEnabled;
 }

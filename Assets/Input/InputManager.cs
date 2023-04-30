@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
     
     private void Update()
     {
-        if (Input.anyKeyDown && GameManager.instance.state == GameState.starting)
+        if (Input.anyKeyDown && !Input.GetMouseButtonDown(0) && GameManager.instance.state == GameState.starting)
         {
             GameManager.instance.ChangeState(GameState.inGame);
             
@@ -49,7 +49,7 @@ public class InputManager : MonoBehaviour
             if (isRestartLocked) return;
             endGameText.gameObject.SetActive(true);
             
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown && !Input.GetMouseButtonDown(0))
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }

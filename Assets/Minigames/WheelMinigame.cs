@@ -40,7 +40,7 @@ public class WheelMinigame : Minigame, IPointerMoveHandler
 
     private int GetZoneAfter(int zone) => (zone + 1) % zones.Count;
 
-    public override void ResetState()
+    protected override void ResetState()
     {
         spinProgress = 0;
         spinCountText.text = revolutionsRequired.ToString();

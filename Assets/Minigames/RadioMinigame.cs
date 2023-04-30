@@ -35,7 +35,7 @@ public class RadioMinigame : Minigame, IDragHandler, IEndDragHandler
         return currentValue >= lowerBound && currentValue <= upperBound;
     }
 
-    public override void ResetState()
+    protected override void ResetState()
     {
         targetValue = Random.Range(0, maxValueRange);
         currentValue = maxValueRange / 2;
