@@ -12,7 +12,7 @@ public class VehicleAudio : MonoBehaviour
     [SerializeField] private float chanceToSkidOnCollision;
     [SerializeField] private float chanceToHonkOnCollision;
 
-    private bool isSoundEnabled = true;
+    private static bool isSoundEnabled = true;
     
     private void OnEnable()
     {
