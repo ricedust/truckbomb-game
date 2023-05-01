@@ -435,7 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolableObject: {fileID: -4129510893764245704}
   spinCountText: {fileID: 929627965885962883}
-  revolutionsRequired: 2
+  revolutionsRequired: 3
   zones:
   - {fileID: 5046674663699302406}
   - {fileID: 3009641462210299053}
