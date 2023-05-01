@@ -922,8 +922,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.9993425
-    height: 0.9992987
+    width: 1
+    height: 0.9997826
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1330,9 +1330,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1758698711
+  m_SortingLayer: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 8e1d0b10a320aaa47b50de2b9e1d8d42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1368,7 +1368,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3088,7 +3088,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1758698711
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 469c9feaaecd2284b964e965fc108b0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3124,7 +3124,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -3631,6 +3631,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1967104646058354944, guid: 34264214afbeb294390d82b8b3707bd3, type: 3}
       propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916124666691806307, guid: 34264214afbeb294390d82b8b3707bd3, type: 3}
+      propertyPath: soundPitchVariance
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7787268539333199324, guid: 34264214afbeb294390d82b8b3707bd3, type: 3}
