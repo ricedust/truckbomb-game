@@ -12,7 +12,7 @@ public class GameManager : StaticInstance<GameManager>
 
     public GameState state { get; private set; }
     public float gameSpeed { get; private set; }
-    public float distanceTraveledFeet { get; private set; }
+    public float distanceFeet { get; private set; }
 
     private void Start() => ChangeState(GameState.starting); // initialize with starting state
 
@@ -65,7 +65,7 @@ public class GameManager : StaticInstance<GameManager>
     }
 
     private void SetGameSpeed(float gameSpeed) => this.gameSpeed = gameSpeed;
-    private void SetDisanceTraveled(float distanceTraveledFeet) => this.distanceTraveledFeet = distanceTraveledFeet;
+    private void SetDisanceTraveled(float distanceTraveledFeet) => this.distanceFeet = distanceTraveledFeet;
 }
 
 [Serializable]

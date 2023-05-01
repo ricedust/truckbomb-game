@@ -1,23 +1,40 @@
 using System;
+using System.Collections;
 using UnityEngine;
-using TMPro;
 
 public class DistanceTracker : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI distanceTraveledText;
-
     private Action<float> SetDistanceTraveled;
+    private const float feetPerUnit = 14.7f;
+
+    private void OnEnable()
+    {
+        GameManager.OnAfterStateChanged += StartTracking;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnAfterStateChanged -= StartTracking;
+    }
 
     public void Initialize(Action<float> SetDistanceTraveled) => this.SetDistanceTraveled = SetDistanceTraveled;
     
-    private void Update()
+    private void StartTracking(GameState state)
     {
-        if (GameManager.instance.gameSpeed > 0)
+        if (state != GameState.inGame) return;
+        StartCoroutine(UpdateDistance());
+    }
+
+    private IEnumerator UpdateDistance()
+    {
+        // update as long as game speed isn't zero or in game
+        while (GameManager.instance.gameSpeed > 0 
+               || GameManager.instance.state == GameState.inGame)
         {
-            float currentDistance = GameManager.instance.distanceTraveledFeet;
-            currentDistance += Time.deltaTime * GameManager.instance.gameSpeed * 14.7f;
-            SetDistanceTraveled(currentDistance);
+            float distanceFeet = GameManager.instance.distanceFeet;
+            distanceFeet += Time.deltaTime * GameManager.instance.gameSpeed * feetPerUnit;
+            SetDistanceTraveled(distanceFeet);
+            yield return null;
         }
-        distanceTraveledText.text = "FEET TRAVELED: " + GameManager.instance.distanceTraveledFeet + "\nMILES TRAVELED: " + GameManager.instance.distanceTraveledFeet * 0.0001894f;
     }
 }

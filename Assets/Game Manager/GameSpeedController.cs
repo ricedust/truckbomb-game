@@ -30,6 +30,11 @@ public class GameSpeedController : MonoBehaviour
 
     private void Update()
     {
+        if (!gameSpeedCurve.enabled)
+        {
+            SetGameSpeed(0);
+            return;
+        }
         SetGameSpeed(currentSpeed + gameSpeedBooster.currentSpeedIncrease);
     }
 

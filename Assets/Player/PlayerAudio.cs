@@ -7,7 +7,6 @@ public class PlayerAudio : MonoBehaviour
     [SerializeField] private SoundToggle soundToggle;
     [SerializeField] private float skidVolume;
     
-    private bool isSoundEnabled = true;
     private void OnEnable()
     {
         GameManager.OnAfterStateChanged += StopEngine;
