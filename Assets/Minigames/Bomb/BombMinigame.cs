@@ -1,14 +1,13 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using TMPro;
 
 
-public class BombMinigame : Minigame, IPointerClickHandler
+public class BombMinigame : Minigame
 {
-    [SerializeField] private TextMeshPro correctCodeText;
-    [SerializeField] private TextMeshPro inputCodeText;
-    [SerializeField] private TextMeshPro secondsLeftText;
+    [SerializeField] private TextMeshProUGUI correctCodeText;
+    [SerializeField] private TextMeshProUGUI inputCodeText;
+    [SerializeField] private TextMeshProUGUI secondsLeftText;
 
     [SerializeField] private float timeLimitSeconds;
     [SerializeField] private float incorrectCodeDelaySeconds;
@@ -21,6 +20,8 @@ public class BombMinigame : Minigame, IPointerClickHandler
 
     protected override void ResetState()
     {
+        Numkey.OnNumkeyPressed += UpdateInputCode;
+        
         MinigameManager.instance.isBombOnScreen = true;
         isNumpadLocked = false;
 
@@ -40,6 +41,7 @@ public class BombMinigame : Minigame, IPointerClickHandler
         {
             correctCode += Random.Range(0, 10);
         }
+
         correctCodeText.text = correctCode;
     }
 
@@ -56,25 +58,26 @@ public class BombMinigame : Minigame, IPointerClickHandler
         StopAllCoroutines();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    private void UpdateInputCode(int digit)
     {
-        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out NumpadKey numpadKey) && !isNumpadLocked)
-        {
-            inputCode += numpadKey.GetNumber();
-            inputCodeText.text = inputCode;
-
-            if (inputCode.Length >= codeLength) CheckInputCode();
-        }
+        if (isNumpadLocked) return;
+        
+        inputCode += digit;
+        inputCodeText.text = inputCode;
+        CheckInputCode();
     }
 
     private void CheckInputCode()
     {
-        if (inputCode == correctCode) Defuse();
-        else
+        // compare the last digits of the input and correct code
+        if (inputCode[^1] != correctCode[inputCode.Length - 1])
         {
-            inputCodeText.text = "X";
+            inputCodeText.text = "XXXX";
             StartCoroutine(LockNumpadForSeconds(incorrectCodeDelaySeconds));
+            return;
         }
+        
+        if (inputCode == correctCode) Defuse();
     }
 
     private IEnumerator LockNumpadForSeconds(float seconds)
@@ -94,7 +97,7 @@ public class BombMinigame : Minigame, IPointerClickHandler
     {
         StopAllCoroutines();
         MinigameManager.instance.isBombOnScreen = false;
+        Numkey.OnNumkeyPressed -= UpdateInputCode;
         WinMinigame();
     }
 }
-

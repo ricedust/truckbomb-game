@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe07ac2d02bf9944b1fc6efd31ff071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boltsRequiredForPowerup: 30
+  boltsRequiredForPowerup: 40
   powerupDurationSeconds: 3
 --- !u!1 &780069855
 GameObject:
@@ -2523,9 +2523,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSpeedCurve: {fileID: 1249564973}
   gameSpeedBooster: {fileID: 1249564977}
-  initialSpeed: 9.5
+  initialSpeed: 8.5
   finalSpeed: 15
-  timeToFinalSpeedSeconds: 600
+  timeToFinalSpeedSeconds: 750
   timeToStopOnGameOverSeconds: 3
 --- !u!114 &1249564975
 MonoBehaviour:
