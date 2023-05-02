@@ -33,8 +33,12 @@ public class InputManager : MonoBehaviour
     {
         yield return new WaitForSeconds(restartDelaySeconds);
         isRestartLocked = false;
-        PlayerPrefs.SetFloat("HighScore", GameManager.instance.distanceFeet);
-        PlayerPrefs.Save();
+        
+        if (GameManager.instance.distanceFeet > PlayerPrefs.GetFloat("HighScore", 0))
+        {
+            PlayerPrefs.SetFloat("HighScore", GameManager.instance.distanceFeet);
+            PlayerPrefs.Save();
+        }
     }
     
     private void Update()
