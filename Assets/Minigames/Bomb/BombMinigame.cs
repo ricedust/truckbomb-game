@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using Random = UnityEngine.Random;
 
 
 public class BombMinigame : Minigame
@@ -18,10 +20,18 @@ public class BombMinigame : Minigame
     private float secondsLeft;
     private bool isNumpadLocked;
 
-    protected override void ResetState()
+    private void Awake()
     {
         Numkey.OnNumkeyPressed += UpdateInputCode;
-        
+    }
+
+    private void OnDestroy()
+    {
+        Numkey.OnNumkeyPressed -= UpdateInputCode;
+    }
+
+    protected override void ResetState()
+    {
         MinigameManager.instance.isBombOnScreen = true;
         isNumpadLocked = false;
 
@@ -61,7 +71,7 @@ public class BombMinigame : Minigame
     private void UpdateInputCode(int digit)
     {
         if (isNumpadLocked) return;
-        
+
         inputCode += digit;
         inputCodeText.text = inputCode;
         CheckInputCode();
@@ -76,7 +86,7 @@ public class BombMinigame : Minigame
             StartCoroutine(LockNumpadForSeconds(incorrectCodeDelaySeconds));
             return;
         }
-        
+
         if (inputCode == correctCode) Defuse();
     }
 
@@ -97,7 +107,6 @@ public class BombMinigame : Minigame
     {
         StopAllCoroutines();
         MinigameManager.instance.isBombOnScreen = false;
-        Numkey.OnNumkeyPressed -= UpdateInputCode;
         WinMinigame();
     }
 }
