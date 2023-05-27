@@ -1668,7 +1668,6 @@ GameObject:
   - component: {fileID: 1029579759}
   - component: {fileID: 1029579756}
   - component: {fileID: 1029579757}
-  - component: {fileID: 1029579763}
   - component: {fileID: 1029579761}
   - component: {fileID: 1029579760}
   - component: {fileID: 1029579762}
@@ -1889,48 +1888,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInvincibility: {fileID: 1029579769}
   vehicleCollisionForce: 2
---- !u!114 &1029579763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029579753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 436d6ee4370974a4c9a7725762215815, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onMoveLeft:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1029579761}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: MergeLeft
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onMoveRight:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1029579761}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: MergeRight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1029579764
 MonoBehaviour:
   m_ObjectHideFlags: 0

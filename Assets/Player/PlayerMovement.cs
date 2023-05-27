@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +7,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private CurveLerper laneChangeLerper;
     [SerializeField] [Range(0, 4)] private int targetLane;
     [SerializeField] private float timeToChangeLaneSeconds;
+
+    private PlayerInputActions playerInputActions;
+
+    private void Awake()
+    {
+        playerInputActions = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        playerInputActions.Enable();
+        playerInputActions.Player.Merge.performed += Merge;
+    }
+
+    private void OnDisable()
+    {
+        playerInputActions.Player.Merge.performed -= Merge;
+        playerInputActions.Disable();
+    }
+
+    private void Merge(InputAction.CallbackContext context)
+    {
+        ChangeLane((int)context.ReadValue<float>());
+    }
 
     private void FixedUpdate()
     {
@@ -30,8 +53,4 @@ public class PlayerMovement : MonoBehaviour
         // start lane change animation
         laneChangeLerper.LerpOnCurve(startXPosition, targetXPosition, timeToChangeLaneSeconds);
     }
-
-    public void MergeLeft() => ChangeLane(-1);
-
-    public void MergeRight() => ChangeLane(1);
 }
