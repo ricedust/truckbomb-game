@@ -1,14 +1,18 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : StaticInstance<GameManager>
 {
-    [SerializeField] private GameSpeedController gameSpeedController;
-    [SerializeField] private DistanceTracker distanceTracker;
-
     // events to broadcast state changes
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
+
+    [SerializeField] private GameSpeedController gameSpeedController;
+    [SerializeField] private DistanceTracker distanceTracker;
+    [SerializeField] private Player player;
+    
+    [SerializeField] private float postGameDelaySeconds;
 
     public GameState state { get; private set; }
     public float gameSpeed { get; private set; }
@@ -38,6 +42,9 @@ public class GameManager : StaticInstance<GameManager>
             case GameState.lose:
                 HandleLosing();
                 break;
+            case GameState.postGame:
+                HandlePostGame();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
@@ -49,23 +56,31 @@ public class GameManager : StaticInstance<GameManager>
 
     private void HandleStarting()
     {
-        gameSpeedController.Initialize(SetGameSpeed);
-        distanceTracker.Initialize(SetDisanceTraveled);
+        // give gameSpeedController and distanceTracker permission to modify game variables
+        gameSpeedController.Initialize(newGameSpeed => gameSpeed = newGameSpeed);
+        distanceTracker.Initialize(newDistanceFeet => distanceFeet = newDistanceFeet);
     }
 
     private void HandleInGame()
     {
+        player.gameObject.SetActive(true);
         BoltManager.instance.StartSpawningBolts();
-        // ObstacleManager.instance.StartSpawningVehicles();
     }
 
     private void HandleLosing()
     {
-
+        StartCoroutine(DelayPostGame());
     }
 
-    private void SetGameSpeed(float gameSpeed) => this.gameSpeed = gameSpeed;
-    private void SetDisanceTraveled(float distanceTraveledFeet) => this.distanceFeet = distanceTraveledFeet;
+    private IEnumerator DelayPostGame()
+    {
+        yield return new WaitForSeconds(postGameDelaySeconds);
+        ChangeState(GameState.postGame);
+    }
+
+    private void HandlePostGame()
+    {
+    }
 }
 
 [Serializable]
@@ -74,4 +89,5 @@ public enum GameState
     starting = 0,
     inGame = 1,
     lose = 2,
+    postGame = 3
 }

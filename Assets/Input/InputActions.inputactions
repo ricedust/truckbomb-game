@@ -83,6 +83,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Menu",
+            "id": "c0be8128-211c-4ab9-adc6-2a59ba43721c",
+            "actions": [
+                {
+                    "name": "AnyKeyDown",
+                    "type": "Button",
+                    "id": "deed51ce-67f7-408a-9f7f-7739e8ba17ac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4b8ed248-de31-4fe3-8a5d-b95f409d8ddd",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AnyKeyDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

@@ -10,11 +10,13 @@ public class DistanceTracker : MonoBehaviour
     private void OnEnable()
     {
         GameManager.OnAfterStateChanged += StartTracking;
+        GameManager.OnAfterStateChanged += UpdateHighScore;
     }
 
     private void OnDisable()
     {
         GameManager.OnAfterStateChanged -= StartTracking;
+        GameManager.OnAfterStateChanged -= UpdateHighScore;
     }
 
     public void Initialize(Action<float> SetDistanceTraveled) => this.SetDistanceTraveled = SetDistanceTraveled;
@@ -35,6 +37,17 @@ public class DistanceTracker : MonoBehaviour
             distanceFeet += Time.deltaTime * GameManager.instance.gameSpeed * feetPerUnit;
             SetDistanceTraveled(distanceFeet);
             yield return null;
+        }
+    }
+
+    private void UpdateHighScore(GameState state)
+    {
+        if (state != GameState.postGame) return;
+        
+        if (GameManager.instance.distanceFeet > PlayerPrefs.GetFloat("HighScore", 0))
+        {
+            PlayerPrefs.SetFloat("HighScore", GameManager.instance.distanceFeet);
+            PlayerPrefs.Save();
         }
     }
 }

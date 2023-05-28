@@ -1397,7 +1397,7 @@ GameObject:
   - component: {fileID: 840068971}
   - component: {fileID: 840068970}
   m_Layer: 5
-  m_Name: End Game Text
+  m_Name: Post Game Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1607,54 +1607,6 @@ MonoBehaviour:
   topBackground: {fileID: 1957180336}
   startPosition: {x: 0, y: 30.9375}
   endPosition: {x: 0, y: -14.0625}
---- !u!1 &947754965
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 947754966}
-  - component: {fileID: 947754967}
-  m_Layer: 0
-  m_Name: Input Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &947754966
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947754965}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2022854921}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &947754967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947754965}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d283ffc3cb463eb92a8daa73e44a5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startGameText: {fileID: 89991995}
-  endGameText: {fileID: 840068968}
-  player: {fileID: 1029579757}
-  restartDelaySeconds: 3
 --- !u!1 &1029579753
 GameObject:
   m_ObjectHideFlags: 0
@@ -2430,6 +2382,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameSpeedController: {fileID: 1249564974}
   distanceTracker: {fileID: 1249564975}
+  player: {fileID: 1029579757}
+  postGameDelaySeconds: 3
 --- !u!114 &1249564973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2587,7 +2541,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2022854921}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1250132914
 MonoBehaviour:
@@ -3347,6 +3301,7 @@ GameObject:
   - component: {fileID: 1643892115}
   - component: {fileID: 1643892114}
   - component: {fileID: 1643892116}
+  - component: {fileID: 1643892117}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -3431,6 +3386,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d3e822276a0f4335931a9c6333fe3793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasInput: {fileID: 1643892117}
+  startGameText: {fileID: 89991996}
+  endGameText: {fileID: 840068969}
+--- !u!114 &1643892117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643892111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de7fb003c63a44109b5663247dbbd5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1645625198
@@ -3552,7 +3522,6 @@ Transform:
   - {fileID: 1367043627}
   - {fileID: 1604344745}
   - {fileID: 682549839}
-  - {fileID: 947754966}
   - {fileID: 1250132913}
   m_Father: {fileID: 0}
   m_RootOrder: 0

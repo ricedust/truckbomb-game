@@ -1,40 +1,27 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rigidbody2d;
+    [SerializeField] private PlayerInput playerInput;
     [SerializeField] private CurveLerper laneChangeLerper;
+
     [SerializeField] [Range(0, 4)] private int targetLane;
     [SerializeField] private float timeToChangeLaneSeconds;
 
-    private PlayerInputActions playerInputActions;
-
-    private void Awake()
-    {
-        playerInputActions = new PlayerInputActions();
-    }
-
     private void OnEnable()
     {
-        playerInputActions.Enable();
-        playerInputActions.Player.Merge.performed += Merge;
+        playerInput.OnPlayerMerge += ChangeLane;
     }
 
     private void OnDisable()
     {
-        playerInputActions.Player.Merge.performed -= Merge;
-        playerInputActions.Disable();
-    }
-
-    private void Merge(InputAction.CallbackContext context)
-    {
-        ChangeLane((int)context.ReadValue<float>());
+        playerInput.OnPlayerMerge -= ChangeLane;
     }
 
     private void FixedUpdate()
     {
-        if (GameManager.instance.state != GameState.lose)
+        if (GameManager.instance.state == GameState.inGame)
         {
             rigidbody2d.MovePosition(new Vector2(laneChangeLerper.currentValue, transform.position.y));
         }
