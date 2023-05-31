@@ -1620,6 +1620,7 @@ GameObject:
   - component: {fileID: 1029579759}
   - component: {fileID: 1029579756}
   - component: {fileID: 1029579757}
+  - component: {fileID: 1029579770}
   - component: {fileID: 1029579761}
   - component: {fileID: 1029579760}
   - component: {fileID: 1029579762}
@@ -1823,6 +1824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidbody2d: {fileID: 1029579759}
+  playerInput: {fileID: 1029579770}
   laneChangeLerper: {fileID: 1029579760}
   targetLane: 2
   timeToChangeLaneSeconds: 0.36
@@ -2029,6 +2031,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3d2dfc1de6a2494c835978c4d2dd198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1029579770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029579753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50557dfddba4458a78bd34fb6e8111a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1056875134
