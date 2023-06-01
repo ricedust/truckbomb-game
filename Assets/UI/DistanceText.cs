@@ -12,12 +12,12 @@ public class DistanceText : MonoBehaviour
         if (GameManager.instance.gameSpeed > 0)
         {
             float distanceMiles = GameManager.instance.distanceFeet * feetToMiles;
-            distanceText.text = distanceMiles.ToString("F") + " miles";
+            distanceText.text = distanceMiles.ToString("F3") + " miles";
         }
         else
         {
             float highScoreMiles = PlayerPrefs.GetFloat("HighScore", 0) * feetToMiles;
-            distanceText.text = "Best: " + highScoreMiles.ToString("F") + " miles";
+            distanceText.text = "Best: " + highScoreMiles.ToString("F3") + " miles";
         }
     }
 }
