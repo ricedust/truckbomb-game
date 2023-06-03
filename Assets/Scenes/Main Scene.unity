@@ -2204,8 +2204,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1234404946}
   - component: {fileID: 1234404947}
-  - component: {fileID: 1234404949}
   - component: {fileID: 1234404955}
+  - component: {fileID: 1234404949}
   - component: {fileID: 1234404952}
   - component: {fileID: 1234404954}
   - component: {fileID: 1234404950}
@@ -2273,7 +2273,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vehiclePool: {fileID: 1234404948}
   vehiclePicker: {fileID: 1234404950}
-  spawnInterval: {fileID: 1234404952}
+  spawnArea: {fileID: 1234404952}
   spawnYLevel: -5
   minBatchSize: 1
   maxBatchSize: 4
@@ -2317,8 +2317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d68e40227a4cceb350f641d2b9d727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceInterval: 2
-  raycastYOffset: 1
+  sizeY: 2
 --- !u!114 &1234404954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2345,7 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monoBehaviour: {fileID: 1234404949}
-  startDelaySeconds: 0
+  startDelaySeconds: 0.5
 --- !u!1 &1249564970
 GameObject:
   m_ObjectHideFlags: 0

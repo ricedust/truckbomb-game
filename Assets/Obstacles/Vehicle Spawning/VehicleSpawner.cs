@@ -10,7 +10,7 @@ public class VehicleSpawner : MonoBehaviour
     [Header("References")] 
     [SerializeField] private ObjectPooler vehiclePool;
     [SerializeField] private VehiclePicker vehiclePicker;
-    [SerializeField] private VehicleSpawnInterval spawnInterval;
+    [SerializeField] private VehicleSpawnArea spawnArea;
 
     [Header("Spawn Parameters")]
     [SerializeField] private float spawnYLevel;
@@ -46,7 +46,7 @@ public class VehicleSpawner : MonoBehaviour
         while (true)
         {
             // spawn wave if the spawn area is clear
-            bool isReadyToSpawn = spawnInterval.IsDistanceIntervalReached(spawnYLevel);
+            bool isReadyToSpawn = spawnArea.IsEmpty(spawnYLevel);
             if (isReadyToSpawn) SpawnBatchInRandomLanes();
             
             // check again after time interval
