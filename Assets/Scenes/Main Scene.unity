@@ -2277,6 +2277,7 @@ MonoBehaviour:
   spawnYLevel: -5
   minBatchSize: 1
   maxBatchSize: 4
+  spawnPollIntervalSeconds: 0.5
   <minVehiclespeed>k__BackingField: 5
   <maxVehiclespeed>k__BackingField: 7
 --- !u!114 &1234404950
