@@ -922,8 +922,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1
-    height: 1
+    width: 0.9991226
+    height: 0.9989035
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -2277,7 +2277,7 @@ MonoBehaviour:
   spawnYLevel: -5
   minBatchSize: 1
   maxBatchSize: 4
-  spawnPollIntervalSeconds: 0.5
+  spawnPollIntervalSeconds: 0.25
   <minVehiclespeed>k__BackingField: 5
   <maxVehiclespeed>k__BackingField: 7
 --- !u!114 &1234404950
@@ -2317,7 +2317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d68e40227a4cceb350f641d2b9d727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sizeY: 2
+  sizeY: 4
 --- !u!114 &1234404954
 MonoBehaviour:
   m_ObjectHideFlags: 0
