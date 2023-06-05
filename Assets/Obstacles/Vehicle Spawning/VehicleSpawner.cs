@@ -6,6 +6,9 @@ using Random = UnityEngine.Random;
 
 public class VehicleSpawner : MonoBehaviour
 {
+    /// <summary>Invoked when a vehicle wave is spawned with a bool array of whether each lane is occupied</summary>
+    public static event Action<bool[]> OnVehicleWaveSpawned; 
+
     [Header("References")] 
     [SerializeField] private ObjectPooler vehiclePool;
     [SerializeField] private VehiclePicker vehiclePicker;
@@ -73,7 +76,9 @@ public class VehicleSpawner : MonoBehaviour
             Spawn(vehicle, lane);
             laneAvailabilities[lane] = false; // mark the lane as occupied
         }
-
+    
+        // invoke event and pass a copy of lane availabilities
+        OnVehicleWaveSpawned?.Invoke(laneAvailabilities.Clone() as bool[]);
         ResetAvailabilities(); // clear lane availabilities when done
     }
 
