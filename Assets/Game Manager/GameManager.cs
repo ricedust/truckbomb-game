@@ -64,7 +64,6 @@ public class GameManager : StaticInstance<GameManager>
     private void HandleInGame()
     {
         player.gameObject.SetActive(true);
-        BoltManager.instance.StartSpawningBolts();
     }
 
     private void HandleLosing()
