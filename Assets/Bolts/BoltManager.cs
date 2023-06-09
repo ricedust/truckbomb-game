@@ -65,7 +65,7 @@ public class BoltManager : StaticInstance<BoltManager>
     private void ChangeBoltSpawnLane(bool[] laneAvailabilities)
     {
         // move outwards from the current lane one at a time until an available lane is found
-        for (int i = 0; i < laneXPositions.Length; i++)
+        for (int i = 1; i < laneXPositions.Length; i++)
         {
             // check that lanes are valid and that they are available to spawn bolts in
             bool rightLaneIsValid = EnvironmentManager.instance.IsValidLane(currentBoltSpawnLane + i)

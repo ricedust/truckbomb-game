@@ -922,8 +922,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.9991226
-    height: 0.9989035
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe07ac2d02bf9944b1fc6efd31ff071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boltsRequiredForPowerup: 40
+  boltsRequiredForPowerup: 60
   powerupDurationSeconds: 3
 --- !u!1 &780069855
 GameObject:
@@ -2750,7 +2750,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boltPool: {fileID: 1367043629}
   boltsCollectedText: {fileID: 88501756}
-  spawnIntervalInSeconds: 0.1
+  spawnIntervalInSeconds: 0.15
   spawnYPosition: 4
 --- !u!114 &1367043629
 MonoBehaviour:
@@ -3204,7 +3204,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1604344745
 Transform:
   m_ObjectHideFlags: 0
