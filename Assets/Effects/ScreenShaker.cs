@@ -38,10 +38,13 @@ public class ScreenShaker : MonoBehaviour
 
         while (secondsElapsed < durationSeconds)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
+            if(Time.timeScale != 0f) {
+                float x = Random.Range(-1f, 1f) * magnitude;
+                float y = Random.Range(-1f, 1f) * magnitude;
 
-            mainCamera.position = new Vector3(x, y, originalCameraPosition.z);
+                mainCamera.position = new Vector3(x, y, originalCameraPosition.z);
+            }
+            
 
             secondsElapsed += Time.deltaTime;
 
