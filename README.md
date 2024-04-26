@@ -1,5 +1,9 @@
 # TRUCKBOMB ([itch.io](https://ricedust.itch.io/truckbomb-test-release))
 
+## Gameplay ([YouTube](https://youtu.be/afoQ90TNUvI))
+
+[![Truckbomb Gameplay](https://img.youtube.com/vi/afoQ90TNUvI/0.jpg)](https://youtu.be/afoQ90TNUvI)
+
 ## About
 
 This is a chaotic, endless, arcade driving game where you must multitask to survive.
@@ -27,10 +31,5 @@ Good luck :)
 - DaWorst9 - Programmer, Designer
 - Courtney Spisak - Artist
 - RICEDUST - Producer, Sound/Music Producer, Artist, Programmer
-
-
-## Gameplay (YouTube):
-
-[![Truckbomb Gameplay](https://img.youtube.com/vi/afoQ90TNUvI/0.jpg)](https://youtu.be/afoQ90TNUvI)
 
 
