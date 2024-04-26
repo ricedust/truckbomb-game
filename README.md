@@ -1,4 +1,4 @@
-# [Play on Itch.io (Password: overdrive)](https://ricedust.itch.io/truckbomb-test-release)
+# [Play on Itch.io](https://ricedust.itch.io/truckbomb-test-release)
 
 ## Gameplay:
 
