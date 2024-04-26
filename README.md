@@ -2,7 +2,7 @@
 
 ## About
 
-This is a chaotic, endless arcade driving game where you must multitask to survive.
+This is a chaotic, endless, arcade driving game where you must multitask to survive.
 Developed during Spring 2023 for the Game Dev Club @ SJSU.
 Good luck :)
 
